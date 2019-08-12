@@ -1,0 +1,144 @@
+@media only screen and (min-width: 1200px) {
+  ul.tb-products-content li.tb-product {
+    width: 33.33%;
+  }
+}
+
+.tb-content-hover .slick-list {
+    width: 100%;
+    outline: 1px solid transparent;
+    float: none;
+}
+
+.tb-grid-view-item__title {
+    color: #1b806d;
+    font-size: 22px;
+    text-align: center;
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.tb-grid-view-item__meta {
+    display: block;
+    font-family: Cabin,sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.625;
+    color: #443f3f;
+    text-align: center;
+}
+
+a.tb-button-add-to-cart.btn {
+    background-color: #26d07c;
+    color: #FFF;
+    border: 1px solid #26d07c;
+}
+
+a.tb-button-details.btn.btn--secondary {
+    color: #26d07c;
+    background-color: #FFF;
+    border: 1px solid #26d07c;
+}
+
+a.tb-cart-total-price {
+    background: #557b97 !important;
+    height: 50px;
+  	width: 100px;
+}
+
+a.tb-add-to-checkout-items.btn{
+    background-color: #26d07c;
+    color: #FFF;
+    border: 1px solid #26d07c;
+  	text-align: center;
+    display: none;
+}
+
+a.tb-add-to-cart-items.btn.btn--secondary{
+    color: #FFF;
+    background-color: #26d07c;
+    border: 1px solid #26d07c;
+  	text-align: center;
+    width: 100%;
+    
+}
+
+a.tb-continue-shopping.btn.btn--secondary{
+    color: #26d07c;
+    background-color: #FFF;
+    border: 1px solid #26d07c;
+  	text-align: center;
+}
+
+a.tb-filter-clear-all-cart{
+    color: #26d07c;
+    background-color: #FFF;
+    border: 1px solid #26d07c;
+}
+
+a.tb-filter-clear-all{
+    color: #26d07c;
+    background-color: #FFF;
+    border: 1px solid #26d07c;
+}
+
+a.tb-clear-option-name{
+    color: #26d07c;
+    background-color: #FFF;
+    border: 1px solid #26d07c;
+}
+
+.tt-menu a.filter_app-footer {
+    background-color: #26d07c;
+    color: #fff;
+}
+
+a.tb-cart-total-price {
+    background: #1b806d !important;
+}
+
+.tb-content-view-search input.tb-search-box-mobile {
+    height: 40px;
+}
+
+.tb-cart-icon {
+  right: 75px;
+  top: 25px;
+}
+.tb-content-cart {
+  top: 75.5px !important;
+}
+@media only screen and (max-width: 768px) {
+  
+.sticky-header {
+    z-index: 9894;
+}  
+  
+a.tb-cart-total-price {
+    border-radius: 0px 0px 0px 0px !important;
+}
+  
+.header-drawer {
+    z-index: 99999999999999999;
+}
+  
+.tb-sidebar-toggle {
+    background: #1b806d !important;
+  	border-radius: 0px 0px 0px 0px !important;
+}
+.tb-continue-shopping {
+  margin-left: 0px !important;
+  width: 100% !important;
+  margin-top: 5px;
+}
+}
+.build-image {
+  pointer-events: none;
+}
+a.tb-filter-clear {
+    color: #26d07c;
+    background-color: #FFF;
+    border: 1px solid #1b806d !important;
+}

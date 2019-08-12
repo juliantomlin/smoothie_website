@@ -1,0 +1,127 @@
+<section
+  class="module-container {{ section.settings.style }} grid-of-{{ section.blocks.size }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="featured-testimonials">
+  <div class="module-inner home-testimonials">
+    {% if section.settings.title != blank %}
+      <h3 class="section-title">{{ section.settings.title | escape }}</h3>
+    {% endif %}
+
+   	<div class="slick">
+      {% for block in section.blocks %}
+        {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+		<div>
+          <div class="slick-testimonial">
+          {% if block.settings.quote != blank %}
+            <blockquote class="home-testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+              {{ block.settings.quote | escape }}
+              <p class="home-testimonial-quote-source">
+               – {{ block.settings.source | escape }}
+              </p>
+            </blockquote>
+          {% endif %}
+          </div>
+          <div class="slick-image">
+			<div class="slick-background"></div>
+            <div
+              class="home-testimonial-avatar"
+            >
+              {%
+                include 'rimg',
+                img: block.settings.avatar,
+                size: '600x400',
+                crop: 'center'
+              %}
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "default-style",
+          "label": "Default"
+        },
+        {
+          "value": "accent-style",
+          "label": "Accent"
+        },
+        {
+          "value": "contrast-style",
+          "label": "Contrast"
+        }
+      ],
+      "default": "default-style"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Testimonials"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Showcase up to six testimonials to build trust with potential customers."
+        },
+        {
+          "type": "text",
+          "id": "source",
+          "label": "Source",
+          "default": "Source's name."
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar",
+          "info": "120 x 120px .jpg required"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Testimonials",
+      "settings": {
+        "style": "default"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "source": "Jane"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "source": "John"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

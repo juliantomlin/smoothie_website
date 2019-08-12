@@ -1,0 +1,85 @@
+{% if template contains 'product' %}
+{% assign manual_collection = false %}
+{% assign smart_collection = false %}
+{% if product.collections %}
+{% for collection in product.collections %}
+{% if collection.rules %}
+{% if smart_collection == false %}{% assign smart_collection = collection %}{% endif %}
+{% else %}
+{% if manual_collection == false %}{% assign manual_collection = collection %}{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{{ 'globo.alsobought.css' | asset_url | stylesheet_tag }}{{ 'globo.alsobought.js' | asset_url | script_tag }}<script>
+  var globoAlsoBought = new globoAlsoBought({
+    apiUrl: "https://related-products.globosoftware.net/v1/api",
+    shop: "{{ shop.permanent_domain }}",
+    {% if product %}
+    product: {
+      vendor: {{ product.vendor | json }},
+      product_type: {{ product.type | json }},
+      collection: {% if collection %}{{ collection.id }}{% elsif manual_collection %}{{ manual_collection.id }}{% elsif smart_collection %}{{smart_collection.id}}{% else %}null{% endif %}    },
+    {% endif %}
+    shuffle: {
+      recommendations: true,
+      bought_together: false,
+  	},
+    recommendations_product_enable: true,
+    bought_together_enable: false,
+    recommendations_cart_enable: false,
+    moneyFormat: "{{ shop.money_format | replace:'"',"'" }}",
+    page: "{% if template contains 'product' %}product{% elsif template contains 'cart' %}cart{% endif %}",
+    productIds: [{% if template contains 'cart' %}{% for item in cart.items %}{{item.product_id}}{% unless forloop.last %},{% endunless %}{% endfor %}{% elsif template contains 'product' %}{{ product.id }}{% endif %}],
+    no_image_url: "https://cdn.shopify.com/s/images/admin/no-image-large.gif",
+    redirect: false,
+    trans: {
+        'added': "Added to cart",
+        'added_selected_to_cart': "Added selected to cart",
+        'sale': "Sale",
+        'this_item': "This item",
+    }
+  });
+  globoAlsoBought.init();
+</script>
+{% raw %}
+
+<script id="RecommendationsTemplate" type="template/html">
+  <div id="recommendations" class="ga-products-box ga-products-box_1">
+        <h2 class="text-center">Customers Who Like This Also Bought:</h2>
+        <div class="ga-products-carousel-wrapper">
+      <ul class="ga-products-carousel owl-carousel">{{productItems}}</ul>
+    </div>
+  </div>
+</script>
+<script id="RecommendationsItem" type="template/html">
+<li class="ga-product" data-product-id="{{productId}}">
+  <a href="{{productUrl}}">
+        <div class="ga-product_image" style="background-image: url({{productImage}});"></div>
+  </a>
+  <p class="ga-product_title">{{productTitle}}</p>
+    <select name="id" class="ga-product_variant_select {{selectClass}}">
+  	{{productOptions}}  </select>
+    </li>
+</script>
+
+<script id="BoughtTogetherTemplate" type="template/html">
+  <div id="bought_together" class="ga-products-box ga-products-box_1">
+        <h2 class="text-left">Frequently Bought Together</h2>
+        <div class="ga-products-carousel-wrapper">
+      <ul class="ga-products-carousel owl-carousel">
+        {{productItems}}      </ul>
+    </div>
+  </div>
+</script>
+<script id="BoughtTogetherItem" type="template/html">
+<li class="ga-product" data-product-id="{{productId}}">
+  <a href="{{productUrl}}">
+        <div class="ga-product_image" style="background-image: url({{productImage}});"></div>
+  </a>
+  <p class="ga-product_title">{{productTitle}}</p>
+    <select name="id" class="ga-product_variant_select {{selectClass}}">
+  	{{productOptions}}  </select>
+    </li>
+</script>
+{% endraw %}
+{% endif %}

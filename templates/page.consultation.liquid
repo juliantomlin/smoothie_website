@@ -1,0 +1,73 @@
+
+<h1 class="page-title nutritiontitle">{{ page.title }}</h1>
+
+<div class="rte consultintro">
+  {{ page.content }}
+</div>
+
+<div class="contact-form-wrapper">
+  {% form 'contact' %}
+  
+      {% if form.errors %}
+      <p class="error-message">{{ 'contact.general.error' | t }}</p>
+    {% endif %}
+  
+      <div class="input-wrapper consult">
+        <label>{{ 'general.general.name' | t }}</label>
+        <input class="input-field" type="text" placeholder="{{ 'general.general.name_placeholder' | t }}" value="" name="contact[name]">
+      </div>
+
+  <div class="input-wrapper consult">
+    <label for="customer[email]">{{ 'general.general.email' | t }}</label>
+    <input class="input-field" type="text" placeholder="Your email" value="{{ form.email }}" name="contact[email]" class="{% if form.errors contains "email" %}error{% endif %}">
+  </div>
+      <div class="input-wrapper consult">
+        <label for="phonenumber">Phone Number</label>
+        <input class="input-field" type="tel" placeholder="Your number" value="" name="contact[Number]">
+      </div>
+  
+      <div class="input-wrapper consult">
+       <label for="goal">What is your primary goal?</label><br>
+			<input type="radio" id="goal" name="contact[Goal]" value="Weight Loss" /> Weight Loss<br>
+			<input type="radio" id="goal" name="contact[Goal]" value="Training/Muscle Gain" /> Training/Muscle Gain<br>
+			<input type="radio" id="goal" name="contact[Goal]" value="General Health" /> General Health<br>
+      </div>
+      <div class="input-wrapper consult">
+		<label for="PreferredActivities">What are your preferred activities? Tick all that apply.</label><br>
+		<input type="checkbox" id="PreferredActivities" name="contact[PreferredActivities]" value="Running" /> Running<br>
+		<input type="checkbox" id="PreferredActivities" name="contact[PreferredActivities]" value="Weight Training" /> Weight Training<br>
+		<input type="checkbox" id="PreferredActivities" name="contact[PreferredActivities]" value="Outdoor Sports" /> Outdoor Sports<br>
+		<input type="checkbox" id="PreferredActivities" name="contact[PreferredActivities]" value="Indoor Sports" /> Indoor Sports<br>
+		<input type="checkbox" id="PreferredActivities" name="contact[PreferredActivities]" value="Yoga" /> Yoga<br>
+		<input type="checkbox" id="PreferredActivities" name="contact[PreferredActivities]" value="Other" /> Other<br>
+      </div>
+        <div class="input-wrapper consult">
+          <label for="CurrentActivityLevel">How often are you <strong>currently</strong> exercising?</label><br>
+			<input type="radio" id="CurrentActivityLevel" name="contact[CurrentActivityLevel]" value="0 times/week" /> 0 times/week     
+			<input type="radio" id="CurrentActivityLevel" name="contact[CurrentActivityLevel]" value="1-2 times/week" /> 1-2 times/week     
+			<input type="radio" id="CurrentActivityLevel" name="contact[CurrentActivityLevel]" value="3-4 times/week" /> 3-4 times/week     
+			<input type="radio" id="CurrentActivityLevel" name="contact[CurrentActivityLevel]" value="5+ times/week" /> 5+ times/week     
+      </div>
+        <div class="input-wrapper consult">
+          <label for="DesiredActivityLevel">How often would you <strong>like to be</strong> exercising?</label><br>
+			<input type="radio" id="DesiredActivityLevel" name="contact[DesiredActivityLevel]" value="0 times/week" /> 0 times/week     
+			<input type="radio" id="DesiredActivityLevel" name="contact[DesiredActivityLevel]" value="1-2 times/week" />      1-2 times/week     
+			<input type="radio" id="DesiredActivityLevel" name="contact[DesiredActivityLevel]" value="3-4 times/week" />      3-4 times/week     
+			<input type="radio" id="DesiredActivityLevel" name="contact[DesiredActivityLevel]" value="5+ times/week" />      5+ times/week     
+      </div>
+      <div class="input-wrapper consult">
+        <label for="Details">Anything else you would like us to know?</label>
+        <input class="input-field" type="text" placeholder="Dietary restrictions, concerns, etc" value="" name="contact[OtherNotes]">
+      </div>
+
+  
+      <div class="input-wrapper consult">
+        <input class="btn" type="submit" value="Get my free smoothie program">
+      </div>
+{% if form.posted_successfully? %}
+<script>
+window.location = "/pages/thank-you-consultation";
+</script>
+{% endif %}
+  {% endform %}
+</div>

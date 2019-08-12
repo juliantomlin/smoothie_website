@@ -1,0 +1,57 @@
+<h1 class="page-title">Account Login</h1>
+<p>Log in here to manage your order, including changing flavours and skipping deliveries.</p>
+<p class="successful-reset">{{ 'customer.reset_password.successful_reset' | t }}</p>
+
+<div class="customer-login">
+  {% form 'customer_login' %}
+
+    {% if form.errors %}
+      <p class="error-message banner">{{ 'customer.login.error' | t }}</p>
+    {% endif %}
+
+    <div class="input-wrapper">
+      <label>{{ 'general.general.email' | t }}</label>
+      <input class="input-field" type="text" placeholder="{{ 'general.general.email' | t }}" value="{{ form.email }}" name="customer[email]">
+    </div>
+
+    <div class="input-wrapper">
+      <label>{{ 'general.general.password' | t }}</label>
+      <input class="input-field input-password" type="password" placeholder="{{ 'general.general.password' | t }}" name="customer[password]">
+    </div>
+
+    <div class="input-wrapper">
+      <input class="button" type="submit" value="{{ 'general.general.login' | t }}">
+    </div>
+
+    <p class="toggle-forgetfulness"><span>{{ 'customer.login.forgot_password' | t }}</span></p>
+
+  {% endform %}
+</div>
+
+<div class="recover-password">
+  {% form 'recover_customer_password' %}
+
+    <p>{{ 'customer.reset_password.subtext' | t }}</p>
+
+    {% if form.posted_successfully? %}
+      <span class="reset-check" data-successful-reset="true"></span>
+    {% endif %}
+
+    <div class="input-wrapper">
+      <label>{{ 'general.general.email' | t }}</label>
+      <input class="input-field {% if form.errors %}error{% endif %}" type="text" placeholder="{{ 'general.general.email' | t }}" value="{{ form.email }}" name="email">
+
+      {% if form.errors %}
+        <p class="error-message">{{ form.errors.messages['form'] }}</p>
+      {% endif %}
+    </div>
+
+    <div class="input-wrapper reset-button">
+      <input class="button" type="submit" value="{{ 'customer.reset_password.submit' | t }}">
+    </div>
+
+    <p class="toggle-forgetfulness"><span>{{ 'customer.general.or' | t }} {{ 'customer.general.cancel' | t }}</span></p>
+
+  {% endform %}
+</div>
+

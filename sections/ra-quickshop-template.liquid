@@ -1,0 +1,162 @@
+<div id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product-quickview-template" data-enable-history-state="false">
+  <div id="product-{{ product.id }}" class="ra-product">
+    <a href="#0" class="ra-close"></a>
+
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+    {%- assign featured_image_alt = current_variant.featured_image.alt | default: product.featured_image.alt -%}
+    <div class="ra-slider-wrapper">
+      <div class="cover-image">
+        <div class="phantom-image" style="background-image:url({{ featured_image | img_url: '650x' }});"></div>
+        <img src="{{ featured_image | img_url: '500x' }}" alt="{{ featured_image_alt | escape }}" />
+      </div>
+      <div class="swiper-container photoswipe-wrapper">
+        <div class="swiper-wrapper images">
+          <div class="swiper-slide photoswipe-item">
+            <a class="FeaturedImage-{{ section.id }}" href="{{ featured_image | img_url: 'master' }}" data-size="{{ featured_image.width }}x{{ featured_image.height }}">
+              <img src="{{ featured_image | img_url: '650x' }}" alt="{{ featured_image_alt | escape }}" />
+              <div class="phantom-image" style="background-image:url({{ featured_image | img_url: '650x' }});"></div>
+            </a>
+          </div>
+          {%- if product.images.size > 1 -%}
+          {%- for image in product.images -%}
+          {%- unless image == featured_image -%}
+          <div class="swiper-slide photoswipe-item">
+            <a class="FeaturedImage-{{ section.id }}" href="{{ image.src | img_url: 'master' }}" data-size="{{ image.width }}x{{ image.height }}">
+              <img src="{{ image.src | img_url: '650x' }}" alt="{{ image.alt | escape }}" />
+              <div class="phantom-image" style="background-image:url({{ image.src | img_url: '650x' }});"></div>
+            </a>
+          </div>
+          {%- endunless -%}
+          {%- endfor -%}
+          {%- endif -%}
+        </div>
+        {%- if product.images.size > 1 -%}
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="ra-item-info">
+      <div class="product_infos">
+        <div class="quickview-badges product-images-wrapper catalog-mode">
+          <span class="product-price__sale-label-{{ section.id }} ribbon onsale{% unless current_variant.compare_at_price > current_variant.price %} ra-hide{% endunless %}">
+            <span data-price="{{current_variant.price}}" data-compare-at-price="{{current_variant.compare_at_price}}"></span>
+          </span>
+        </div>
+        <a class="product_link" href="{{ product.url | within: collections.all }}"><h1 class="product_title entry-title">{{ product.title }}</h1></a>
+
+        <div class="product_price">
+          {%- if product.price_varies -%}
+          <p class="price">
+            <span class="price-new"><span class="money">{{ product.price_min | money }}</span></span> - <span class="price-new"><span class="money">{{ product.price_max | money }}</span></span>
+          </p>
+          {%- else -%}
+          <div class="product-single__price-{{ section.id }}">
+            <p class="price">
+              <span id="ComparePrice-{{ section.id }}" class="price-old{% unless current_variant.compare_at_price > current_variant.price %} ra-hide{% endunless %}"><span class="money">{% if current_variant.compare_at_price > current_variant.price %}{{ current_variant.compare_at_price | money }}{% endif %}</span></span>
+              <span id="ProductPrice-{{ section.id }}" class="price-new"><span class="money">{{ current_variant.price | money }}</span></span>
+            </p>
+          </div>
+          {%- endif -%}
+        </div>
+
+        <div class="product_excerpt">
+          <p>
+            {{- product.description | truncatewords: 30 -}}
+          </p>
+        </div>
+
+        <div class="catalog-mode">
+          {%- if product.available -%}
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="variations_form cart">
+            {%- unless product.options.size == 1 and product.variants[0].title == 'Default Title' -%}
+            {%- for option in product.options_with_values -%}
+            <div class="selector-wrapper js">
+              <label{% if option.name == 'default' %} class="ra-hide"{% endif %} for="single-option-selector-{{ forloop.index0 }}">
+                {{- option.name -}}
+              </label>
+              <div class="single-option-selector">
+                <select id="single-option-selector-{{ forloop.index0 }}" class="single-option-selector-{{ section.id }}" data-index="option{{ forloop.index }}">
+                  {%- for value in option.values -%}
+                  <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+            {%- endfor -%}
+            {%- endunless -%}
+
+            <select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="variation-select no-js">
+              {%- for variant in product.variants -%}
+              {%- if variant.available -%}
+              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                {{- variant.title -}}
+              </option>
+              {% else %}
+              <option disabled="disabled">{{ variant.title }} - Sold out</option>
+              {%- endif -%}
+              {%- endfor -%}
+            </select>
+
+            {%- if product.price_varies -%}
+            <div class="variation-price product-single__price-{{ section.id }}{% unless current_variant.available %} invisible{% endunless %}">
+              <span class="price">
+                <span id="ComparePrice-{{ section.id }}" class="price-old{% unless current_variant.compare_at_price > current_variant.price %} ra-hide{% endunless %}"><span class="money">{% if current_variant.compare_at_price > current_variant.price %}{{ current_variant.compare_at_price | money }}{% endif %}</span></span>
+                <span id="ProductPrice-{{ section.id }}" class="price-new"><span class="money">{{ current_variant.price | money }}</span></span>
+              </span>
+            </div>
+            {%- endif -%}
+
+            <div class="variation-availability">
+              {%- if current_variant -%}
+              {%- if current_variant.available -%}
+              {%- if current_variant.inventory_management == "shopify" and current_variant.inventory_policy != "continue" -%}
+              {%- if current_variant.inventory_quantity > 0 -%}
+              <p class="stock stock-{{ section.id }} in-stock">{{ current_variant.inventory_quantity  }} In stock</p>
+              {%- else -%}
+              <p class="stock stock-{{ section.id }} out-of-stock">Out of stock</p>
+              {%- endif -%}
+              {%- else -%}
+              <p class="stock stock-{{ section.id }} in-stock">In stock</p>
+              {%- endif -%}
+              {%- else -%}
+              <p class="stock stock-{{ section.id }} out-of-stock">Out of stock</p>
+              {%- endif -%}
+              {%- else -%}
+              <p class="stock stock-{{ section.id }} out-of-stock unavailable">Sorry, this product is unavailable. Please choose a different combination.</p>
+              {%- endif -%}
+            </div>
+
+            <div class="variations_button">
+              <div class="quantity">
+                <input type="number" step="1" min="1" max="20" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric" />
+              </div>
+              <button id="AddToCart-{{ section.id }}" type="submit" class="add_to_cart_button button btn{% unless current_variant.available %} ra-hide{% endunless %}" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                <span id="AddToCartText-{{ section.id }}">
+                  {%- unless current_variant.available -%}
+                    Sold out
+                  {%- else -%}
+                    Add to Cart
+                  {%- endunless -%}
+                </span>
+                <i class="button-loader"></i>
+              </button>
+            </div>
+          </form>
+          {%- else -%}
+          <div class="cart">
+            <p class="stock out-of-stock">Out of stock</p>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- unless product == empty -%}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{- product | json -}}
+  </script>
+{%- endunless -%}

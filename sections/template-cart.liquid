@@ -1,0 +1,315 @@
+{% include 'bold-cart' %}
+<h1 class="page-title">Your Order</h1>
+
+{% if cart.item_count > 0 %}
+
+  <form action="/cart" method="post">
+
+    <table class="cart-items clean">
+      <thead>
+        <tr>
+          <th class="first" colspan="2">{{ 'general.general.price' | t }}</th>
+          <th>{{ 'general.general.quantity' | t }}</th>
+          <th class="last">{{ 'general.general.total' | t }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in cart.items %}
+        {% include 'bold-cart-item' with item %}
+          <tr
+            class="cart-item variant-{{ item.variant.id }} {% include 'for-looper' %}"
+            data-variant="{{ item.variant.id }}"
+            data-title="{{ item.product.title }}"
+            data-url="{{ item.url }}">
+            <td class="cart-item-product first">
+              <a
+                class="cart-image"
+                href="{{ item.url }}">
+                {%
+                  include 'rimg',
+                  img: item.image,
+                  alt: item.product.title,
+                  size: '100x100'
+                %}
+              </a>
+
+              <div class="cart-item-product-wrap">
+                <span class="cart-title">
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                </span>
+
+                {% if section.settings.product_show_vendor and item.vendor != blank %}
+                  <span class="cart-vendor vendor">{{ item.vendor }}</span>
+                {% endif %}
+
+                {% unless item.variant.title == 'Default Title' %}
+                  <span class="cart-variant">{{ item.variant.title }}</span>
+                {% endunless %}
+{{ bold_item_properties }}
+{{ bold_recurring_desc }}
+                <a
+                  class="cart-item-remove"
+                  href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                  {{ 'general.general.remove' | t }}
+                </a>
+              </div>
+            </td>
+            <td class="cart-item-price">
+              <span class="money">{{ bold_item_price | money }}</span>
+            </td>
+            <td class="cart-item-quantity">
+              <input
+                type="text"
+                name="updates[]"
+                class="input-field cart-item-quantity-display"
+                value="{{ item.quantity }}" size="1">
+              <span class="cart-item-decrease icon">&#57364;</span>
+              <span class="cart-item-increase icon">&#57365;</span>
+            </td>
+            <td class="cart-item-total last">
+              <span class="money">{{ item.quantity | times: bold_item_price | money }}</span>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+{% if cart.total_weight > 99999 %}
+    {% else %}
+    <div class="product_rp_cart_div test"></div>
+          <div class="cart-totals">
+        <p class="cart-price">
+          <span class="money">{{ bold_cart_total_price | money }}</span>
+        </p>
+	{% if show_paypal and additional_checkout_buttons and show_paypal %}
+	<div class="additional-checkout-buttons">
+	{{ content_for_additional_checkout_buttons }}
+	</div>
+	{% endif %}
+
+        {% if settings.show-currency-switcher %}
+          <p class="cart-currency-note meta">
+            {{ 'cart.general.currency_note_html' | t: currency: shop.currency }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if cart.total_weight > 5999 %}
+        <input class="cart-button-checkout button {{ bold_remove_class }}" type="submit" name="checkout" value="{{ 'cart.general.submit' | t }}">
+    {% else %}
+    <a style="background-color: grey;" class="cart-button-checkout button">Cart too small</a><br>
+    <div class="add-more">Your order is currently below the order threshold of 6 smoothies.<br> <a href="/collections/build-your-order">Add more to your cart</a> to complete your order.</div>
+    {% endif %}
+        <div class="subscribereasons">
+            <table style="border: 0px; margin: 0px;" width="100%">
+<tbody>
+<tr>
+<td style="width: 33%; border: 0px; text-align: center;">
+<p><img src="//cdn.shopify.com/s/files/1/1119/8356/t/14/assets/cash.png?7670547678666914265" alt="Savings" /> </p>
+<p><strong>Savings</strong></p>
+<p>Cheaper than your local smoothie shop.</p>
+</td>
+<td style="width: 33%; border: 0px; text-align: center;">
+<p><img src="//cdn.shopify.com/s/files/1/1119/8356/t/14/assets/account.png?2548334048172135887" alt="Convenience" /></p>
+<p><strong>Convenience</strong></p>
+<p>Customize, skip, or cancel at any time.</p>
+</td>
+<td style="width: 33%; border: 0px; text-align: center;">
+<p><img src="//cdn.shopify.com/s/files/1/1119/8356/t/14/assets/key.png?10957777930455824586" alt="Benefits" /></p>
+<p><strong>Benefits</strong></p>
+<p>Access exclusive deals from our partners.</p>
+</td>
+</tr>
+</tbody>
+      </table>
+    </div>
+    <div class="cart-tools">
+
+      {% if section.settings.enable_order_notes %}
+        <div class="cart-instructions">
+          <p>{{ 'cart.general.instructions_title' | t }}</p>
+          <textarea
+            class="input-field-textarea"
+            rows="6"
+            name="note"
+            placeholder="{{ 'cart.general.instructions_placeholder' | t }}">{{ cart.note }}</textarea>
+        </div>
+      {% endif %}
+
+
+    </div>
+
+  </form>
+
+
+  <div class="cart-modal-wrapper">
+    <div class="cart-modal">
+      <h3 class="section-title"></h3>
+
+      <div class="cart-modal-message"></div>
+
+      <div class="cart-modal-action"></div>
+    </div>
+  </div>
+
+  {% if section.settings.show_shipping_calculator and cart.requires_shipping %}
+    <div
+      class="cart-shipping-calculator-wrapper"
+      data-shipping-calculator>
+      <div id="shipping-calculator" class="cart-shipping-calculator">
+
+        <p>{{ 'cart.shipping_calculator.header' | t }}</p>
+        {% assign default_country = '' %}
+        {% assign default_province = '' %}
+        {% assign default_zip = '' %}
+
+        {% if section.settings.shipping_calculator_default_country != '' %}
+          {% assign default_country = section.settings.shipping_calculator_default_country | escape %}
+        {% endif %}
+
+        {% if customer %}
+          {% if customer.default_address.country != '' %}
+            {% assign default_country = customer.default_address.country %}
+          {% endif %}
+
+          {% if customer.default_address.province != '' %}
+            {% assign default_province = customer.default_address.province %}
+          {% endif %}
+
+          {% if customer.default_address.zip != '' %}
+            {% assign default_zip = customer.default_address.zip %}
+          {% endif %}
+        {% endif %}
+
+        <div class="shipping-country-wrapper hide-labels">
+          <div class="country-select select-wrapper">
+            <div class="selected-text" data-default="{{ 'cart.shipping_calculator.country' | t }}">{{ 'cart.shipping_calculator.country' | t }}</div>
+            <select
+              class="styled-select address-country"
+              id="address_country"
+              name="address[country]"
+              data-default="{{ default_country }}">
+              {{ country_option_tags }}
+            </select>
+          </div>
+        </div>
+
+        <div id="address_province_container" class="shipping-province-wrapper">
+          <div class="province-select select-wrapper">
+            <div class="selected-text" data-default="{{ 'cart.shipping_calculator.province' | t }}">{{ 'cart.shipping_calculator.province' | t }}</div>
+            <select
+              class="styled-select address-province"
+              id="address_province"
+              name="address[province]"
+              data-default="{{ default_province }}">
+              </select>
+          </div>
+        </div>
+
+        <div class="cart-shipping-zip-code input-wrapper">
+          <input
+            class="address-zip input-field"
+            id="address_zip"
+            name="address[zip]"
+            type="text"
+            size="12"
+            placeholder="{{ 'customer.addresses.zip' | t }}"
+            {% if default_zip != blank %}value="{{ default_zip }}"{% endif %}>
+
+          <input
+            type="button"
+            class="cart-shipping-calculate get-rates button {{ bold_remove_class }}"
+            value="{{ 'cart.shipping_calculator.submit' | t }}" >
+        </div>
+      </div>
+
+      <div class="cart-shipping-calculator-response">
+      </div>
+    </div>
+
+    <script type="application/json" data-shipping-calculator-strings>
+      {
+        "customerCountry": {{ customer.default_address | default: false | json }},
+        "submitButton": {{ 'cart.shipping_calculator.submit' | t | json }},
+        "submitButtonProcessing": {{ 'cart.shipping_calculator.working' | t | json }},
+        "errorMessage": {{ 'cart.shipping_calculator.error' | t: error_message: '** error_message **' | json }},
+        "multiRates": {{ 'cart.shipping_calculator.rates_html' | t: address: '** address **', number_of_rates: '** number_of_rates **', rate: '** rate **' | json }},
+        "oneRate": {{ 'cart.shipping_calculator.rate' | t: address: '** address **' | json }},
+        "noRates": {{ 'cart.shipping_calculator.no_rates' | t | json }},
+        "rateValues": {{ 'cart.shipping_calculator.rate_values_html' | t: rate_title: '** rate_title **', rate: '** rate **' | json }}
+      }
+    </script>
+  
+
+  {% endif %}
+
+  <script type="application/json" data-cart-strings>
+    {
+      "notAvailableText": {{ 'cart.general.not_available'| t | json }},
+      "stockLevelText": {{ 'cart.general.stock_level' | t: stock_count: '** stock_count **' | json }},
+      "okayText": {{ 'cart.general.okay' | t | json }}
+    }
+  </script>
+
+{% else %}
+
+  <p class="empty">{{ 'cart.general.empty' | t }} <a href="{{ shop.url }}/collections/all">{{ 'cart.general.continue' | t }}</a></p>
+
+{% endif %}
+
+
+
+
+{% schema %}
+{
+  "name": "Cart page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "product_show_vendor",
+      "label": "Show names of vendors",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_order_notes",
+      "label": "Enable order notes",
+      "info": "This feature gives your customers the ability to attach a note to the order.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Shipping rate calculator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_calculator",
+      "label": "Enable"
+    },
+    {
+      "type": "text",
+      "id": "shipping_calculator_default_country",
+      "label": "Default country",
+      "default": "United States",
+      "info": "If a customer is logged in to their account, their default shipping address country will be selected."
+    }
+  ]
+}
+{% endschema %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof BOLD === "object" && BOLD.recurring_orders && typeof BOLD.recurring_orders.app.cartWidget.render === "function") {
+//       BOLD.recurring_orders.app.cartWidget.render();
+//       BOLD.recurring_orders.app.cartWidget.bindEvents();
+    }
+  })
+</script>
+  <script>
+      BOLD.recurring_orders.app.ee.on('cart_widget_loaded', function() {
+        setTimeout(function(){
+          
+         $('.bold-ro__recurring-radio-btn').trigger("click");
+        }, 100); // you can decrease this a litle bit if it's causing delays in load time
+      });
+</script>

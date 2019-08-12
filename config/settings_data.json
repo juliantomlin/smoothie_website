@@ -1,0 +1,1150 @@
+{
+  "current": {
+    "background-color": "#ffffff",
+    "body-text-color": "#443f3f",
+    "accent-color": "#26d07c",
+    "heading-color": "#1b806d",
+    "border-color": "#e9e9e9",
+    "primary-button-color": "#ffffff",
+    "header-link-color": "#1b806d",
+    "header-dropdown-color": "#e9e9e9",
+    "form-select-background": "#e9e9e9",
+    "form-select-color": "#1b806d",
+    "form-select-border-color": "#e9e9e9",
+    "footer-background-color": "#ffffff",
+    "footer-header-color": "#1b806d",
+    "footer-accent-color": "#26d07c",
+    "body_background_image": "",
+    "contrast_background_image": "",
+    "footer_background_image": "",
+    "font_body": "cabin_n4",
+    "font_logo": "montserrat_n4",
+    "font_logo_capitalize": true,
+    "font_heading": "montserrat_n7",
+    "font_heading_capitalize": false,
+    "font_section_heading_bold": true,
+    "font_section_heading_capitalize": true,
+    "font_meta_bold": true,
+    "font_meta_capitalize": true,
+    "font_button": "lato_n4",
+    "font_button_capitalize": true,
+    "breadcrumbs_enable": false,
+    "product_show_vendor": false,
+    "product_stock_overlay": false,
+    "product_stock_overlay_show": 5,
+    "social_facebook_url": "",
+    "social_twitter_url": "",
+    "social_google_url": "",
+    "social_pinterest_url": "",
+    "social_instagram_url": "https:\/\/www.instagram.com\/thegoodstuffco_\/",
+    "social_vimeo_url": "",
+    "social_youtube_url": "",
+    "social_rss_url": "",
+    "show-currency-switcher": false,
+    "currency-switcher-format": "money_with_currency_format",
+    "currency-switcher-supported-currencies": "INR GBP CAD USD AUD EUR JPY",
+    "currency-switcher-default": "USD",
+    "recurring-orders-loading": "Loading subscription info...",
+    "recurring-orders-inherit-classes": false,
+    "recurring-orders-additional-button-classes": "",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#26d07c",
+    "checkout_button_color": "#26d07c",
+    "checkout_error_color": "#e32c2b",
+    "contrast-background-color": "#FAF7F6",
+    "meta-color": "#b7aba3",
+    "error-color": "#B84949",
+    "header-show-breadcrumbs": false,
+    "sections": {
+      "general-header": {
+        "type": "general-header",
+        "settings": {
+          "header_sticky": true,
+          "show_cart": true,
+          "show_search": false,
+          "header_logo": "shopify:\/\/shop_images\/the-good-stuff-logo.png",
+          "menu": "main-menu",
+          "menu_style": "header",
+          "color_override": "light",
+          "header_logo_alternate": "shopify:\/\/shop_images\/Logo-White.png",
+          "show_promotion": true,
+          "promotion_home_only": false,
+          "promotion_style": "accent-style",
+          "promotion_text": "Get 20% off your 1st two orders with the code \"SaveTheVeggies\" ->",
+          "promotion_url": "shopify:\/\/collections\/build-your-order"
+        }
+      },
+      "module-product-slideshow": {
+        "type": "module-product-slideshow",
+        "settings": {
+          "slideshow_color": "#68574d",
+          "slideshow_layout": "full-bleed",
+          "slideshow_transition": "transition-slide",
+          "autoplay": true,
+          "frequency": 5,
+          "thumbnail_pagination": true
+        }
+      },
+      "home-slideshow": {
+        "type": "home-slideshow",
+        "blocks": {
+          "slide-1": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Home-Smoothie-Delivery_40d51a0e-1827-4408-8711-2b4deceedf58.jpg",
+              "alignment": "left",
+              "title": "Real Food, Real Fast.",
+              "subtitle": "",
+              "caption": "<p>We're a healthy meal delivery service for the most important meal of the day, breakfast. See how our <strong>ready-to-blend smoothies<\/strong> can help you save time and stay healthy.<\/p>",
+              "button": "See Our Smoothies",
+              "link": "shopify:\/\/collections\/ready-to-blend-smoothies"
+            }
+          }
+        },
+        "block_order": [
+          "slide-1"
+        ],
+        "settings": {
+          "enable": true,
+          "show_shadows": false,
+          "text_color": "#ffffff",
+          "slideshow_layout": "full-bleed",
+          "slideshow_transition": "transition-slide",
+          "autoplay": false,
+          "frequency": 5
+        }
+      },
+      "home-text-columns-with-images": {
+        "type": "home-text-columns-with-images",
+        "blocks": {
+          "column-1": {
+            "type": "text_column",
+            "settings": {
+              "title": "Build Your Box",
+              "caption": "<p>Customize&nbsp;your&nbsp;box of smoothies based on your&nbsp;personal health goals and tastes.<\/p>",
+              "button_text": "",
+              "button_link": "",
+              "image": "shopify:\/\/shop_images\/Build-Your-Box_aef7f4bf-6064-408e-ac67-9e6d4b1e0f44.jpg"
+            }
+          },
+          "column-2": {
+            "type": "text_column",
+            "settings": {
+              "title": "We Deliver",
+              "caption": "<p>Your smoothies will arrive at your doorstep frozen, every week (or month).<\/p>",
+              "button_text": "Order Now",
+              "button_link": "shopify:\/\/collections\/build-your-order",
+              "image": "shopify:\/\/shop_images\/TGS-Smoothie-Delivery.png"
+            }
+          },
+          "column-3": {
+            "type": "text_column",
+            "settings": {
+              "title": "You Enjoy",
+              "caption": "<p>Add water and blend when you like. No prep, no mess. You took care of you today.<\/p>",
+              "button_text": "",
+              "button_link": "",
+              "image": "shopify:\/\/shop_images\/You-Enjoy.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "column-1",
+          "column-2",
+          "column-3"
+        ],
+        "settings": {
+          "style": "default-style",
+          "title": ""
+        }
+      },
+      "home-testimonials": {
+        "type": "home-testimonials",
+        "blocks": {
+          "testimonial-1": {
+            "type": "testimonial",
+            "settings": {
+              "quote": "\"Delicious, user-friendly, plant-based nutrition!\"",
+              "source": "Erin Ireland",
+              "avatar": "shopify:\/\/shop_images\/van201307182403240-jpg.jpg"
+            }
+          },
+          "testimonial-2": {
+            "type": "testimonial",
+            "settings": {
+              "quote": "\"We stash our training room freezer with TGS smoothies every week to help our athletes perform their best.\"",
+              "source": "UBC Varsity Women's Hockey",
+              "avatar": "shopify:\/\/shop_images\/2013-UBC-Womens-Hockey.jpg"
+            }
+          },
+          "1532998218713": {
+            "type": "testimonial",
+            "settings": {
+              "quote": "\"I’ve got two hungry boys at home - with their perfectly portioned smoothies, I never worry about breakfast!\"",
+              "source": "Karin T, busy mom",
+              "avatar": "shopify:\/\/shop_images\/healthy-weight.jpg"
+            }
+          },
+          "1532998264499": {
+            "type": "testimonial",
+            "settings": {
+              "quote": "\"No more excuses! The Good Stuff is a simple way to boost your antioxidant intake and ward off chronic disease.\"",
+              "source": "Diana Steele, RD",
+              "avatar": "shopify:\/\/shop_images\/2018-03-20T19-30-53.233Z--1280x720.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "testimonial-1",
+          "testimonial-2",
+          "1532998218713",
+          "1532998264499"
+        ],
+        "settings": {
+          "style": "default-style",
+          "title": ""
+        }
+      },
+      "home-instagram": {
+        "type": "home-instagram",
+        "settings": {
+          "style": "default-style",
+          "title": "",
+          "access_token": "2105450732.1677ed0.2c300ec7110c4362ab21dcc3496760cb",
+          "button_text": "",
+          "button_link": "https:\/\/www.instagram.com\/thegoodstuffco_\/"
+        }
+      },
+      "general-footer": {
+        "type": "general-footer",
+        "settings": {
+          "show_headings": true,
+          "show_share_buttons": false,
+          "menu_1": "footer",
+          "menu_2": "",
+          "show_payment_icons": true
+        }
+      },
+      "1532998997979": {
+        "type": "home-alternating-content",
+        "blocks": {
+          "1532998997979-2": {
+            "type": "image",
+            "settings": {
+              "media_alignment": "right",
+              "title": "Smoothies That Match Your Goals",
+              "caption": "Everyone's goals are unique. Your breakfast should be, too. Our dietitian-designed products are made to meet your goals -  whether that is to lose weight, build muscle, or just replace your morning bagel.",
+              "button_text": "See Our Smoothies",
+              "button_link": "shopify:\/\/collections\/smoothies",
+              "image": "shopify:\/\/shop_images\/Two-side-smoothie.jpg"
+            }
+          },
+          "1532998997979-0": {
+            "type": "image",
+            "settings": {
+              "media_alignment": "left",
+              "title": "\"No More Excuses\" Convenience",
+              "caption": "A healthy breakfast has a big impact on your life, but eating right isn’t easy. With us, no more throwing out wilted kale, grocery shopping, or settling. The right choice is finally the easy one.",
+              "button_text": "Start Your Order",
+              "button_link": "shopify:\/\/collections\/build-your-order",
+              "image": "shopify:\/\/shop_images\/Smoothies-Life.png"
+            }
+          },
+          "1532999108245": {
+            "type": "image",
+            "settings": {
+              "media_alignment": "right",
+              "title": "Farm To Blender Goodness",
+              "caption": "This is no powder, puree, or any other pretender. You're getting a mixes of real, whole food, so you can see exactly you're blending. We buy from local Vancouver growers whenever possible to support our crucial local food system.",
+              "button_text": "Read About Us",
+              "button_link": "shopify:\/\/pages\/about-old",
+              "image": "shopify:\/\/shop_images\/farm-blender.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "1532998997979-2",
+          "1532998997979-0",
+          "1532999108245"
+        ],
+        "settings": {
+          "style": "default-style",
+          "title": "",
+          "show_borders": false
+        }
+      },
+      "home-image-with-text": {
+        "type": "home-image-with-text",
+        "settings": {
+          "style": "default-style",
+          "title": "Image with text",
+          "caption": "<p>Select imagery and text that relates to your style and story.<\/p>",
+          "button_text": "",
+          "button_link": "",
+          "image": "",
+          "media_layout": "regular"
+        }
+      },
+      "template-collection": {
+        "type": "template-collection",
+        "settings": {
+          "show_featured_image": true,
+          "show_description": true,
+          "tag_filtering": true,
+          "products_in_rows": 3,
+          "numbers_of_rows": 9
+        }
+      },
+      "template-blog": {
+        "type": "template-blog",
+        "settings": {
+          "layout": "grid",
+          "show_rss_icon": false,
+          "show_tags": true,
+          "show_share_buttons": true,
+          "show_featured_image": true,
+          "show_author": false,
+          "show_comment_count": false
+        }
+      },
+      "1533056311849": {
+        "type": "home-logo-list",
+        "blocks": {
+          "1533056311849-0": {
+            "type": "logo",
+            "settings": {
+              "url": "",
+              "logo": "shopify:\/\/shop_images\/BC-Business.png"
+            }
+          },
+          "1533056311849-1": {
+            "type": "logo",
+            "settings": {
+              "url": "",
+              "logo": "shopify:\/\/shop_images\/home-as-seen-on-4.png"
+            }
+          },
+          "1533056311849-2": {
+            "type": "logo",
+            "settings": {
+              "url": "",
+              "logo": "shopify:\/\/shop_images\/home-as-seen-on-3.png"
+            }
+          },
+          "1533056311849-3": {
+            "type": "logo",
+            "settings": {
+              "url": "",
+              "logo": "shopify:\/\/shop_images\/home-as-seen-on-1.png"
+            }
+          }
+        },
+        "block_order": [
+          "1533056311849-0",
+          "1533056311849-1",
+          "1533056311849-2",
+          "1533056311849-3"
+        ],
+        "settings": {
+          "style": "default-style",
+          "title": "",
+          "logos_in_rows": 4
+        }
+      },
+      "1533056380520": {
+        "type": "home-image-with-text-overlay",
+        "settings": {
+          "style": "accent-style",
+          "title": "Ready to Try Vancouver's Smoothest Meal Delivery?",
+          "caption": "",
+          "button_text": "Build My Smoothie Box",
+          "button_link": "shopify:\/\/collections\/build-your-order",
+          "image": "shopify:\/\/shop_images\/green.jpg",
+          "overlay_opacity_strength": 0
+        }
+      },
+      "module-product": {
+        "type": "module-product",
+        "blocks": {
+          "1541375097405": {
+            "type": "additional_info",
+            "settings": {
+              "info_text": "",
+              "info_url": "",
+              "info_icon": "info"
+            }
+          }
+        },
+        "block_order": [
+          "1541375097405"
+        ],
+        "settings": {
+          "show_spb": false,
+          "product_cart_redirect": false,
+          "center_product_details": false,
+          "enable_zoom": true,
+          "product_show_vendor": false,
+          "linked_options": true,
+          "variants_style": "select",
+          "single_column_product": false,
+          "show_share_buttons": false,
+          "show_related_products": false
+        }
+      },
+      "template-article": {
+        "type": "template-article",
+        "settings": {
+          "show_tags": true,
+          "show_author": true,
+          "show_share_buttons": false,
+          "show_full_width_image": false
+        }
+      },
+      "template-cart": {
+        "type": "template-cart",
+        "settings": {
+          "product_show_vendor": false,
+          "enable_order_notes": false,
+          "show_shipping_calculator": false,
+          "shipping_calculator_default_country": "Canada"
+        }
+      },
+      "1542257761493": {
+        "type": "home-text",
+        "blocks": {
+          "1542257761493-0": {
+            "type": "rich_text",
+            "settings": {
+              "title": "",
+              "content": "<p>We're a healthy meal delivery service for the most important meal of the day, breakfast. See how our ready-to-blend smoothies can help you save time and stay healthy.<\/p>\n<p><\/p>\n<p><a href=\"\/collections\/ready-to-blend-smoothies\" title=\"Our Ready-to-Blend Smoothies\">See Our Smoothies<\/a><\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1542257761493-0"
+        ],
+        "settings": {
+          "style": "default-style",
+          "show_borders": false
+        }
+      },
+      "module-product-gift-card": {
+        "type": "module-product-gift-card",
+        "blocks": {
+          "module-product-gift-card-0": {
+            "type": "additional_info",
+            "settings": {
+              "info_text": "Additional info",
+              "info_url": "",
+              "info_icon": "info"
+            }
+          }
+        },
+        "block_order": [
+          "module-product-gift-card-0"
+        ],
+        "settings": {
+          "show_spb": false,
+          "product_cart_redirect": false,
+          "center_product_details": true,
+          "enable_zoom": true,
+          "product_show_vendor": false,
+          "linked_options": true,
+          "variants_style": "select",
+          "single_column_product": false,
+          "show_share_buttons": false,
+          "show_related_products": false
+        }
+      },
+      "1550446565590": {
+        "type": "home-text",
+        "blocks": {
+          "1550446565590-0": {
+            "type": "rich_text",
+            "settings": {
+              "title": "",
+              "content": "<p><em>Vegan | Paleo | Gluten Free | Dairy Free | No Sugar Added<\/em><\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1550446565590-0"
+        ],
+        "settings": {
+          "style": "default-style",
+          "show_borders": false
+        }
+      }
+    },
+    "content_for_index": [
+      "1542257761493",
+      "1550446565590",
+      "home-text-columns-with-images",
+      "home-testimonials",
+      "1533056311849",
+      "1532998997979",
+      "1533056380520",
+      "home-instagram"
+    ]
+  },
+  "presets": {
+    "Home": {
+      "background-color": "#ffffff",
+      "contrast-background-color": "#FAF7F6",
+      "body-text-color": "#988980",
+      "accent-color": "#DB3939",
+      "heading-color": "#68574D",
+      "meta-color": "#b7aba3",
+      "error-color": "#B84949",
+      "border-color": "#EDE7E4",
+      "primary-button-color": "#ffffff",
+      "header-link-color": "#988980",
+      "header-dropdown-color": "#ede7e4",
+      "form-select-background": "#ede7e4",
+      "form-select-color": "#988980",
+      "form-select-border-color": "#ede7e4",
+      "footer-background-color": "#2C211B",
+      "footer-header-color": "#ffffff",
+      "footer-accent-color": "#988980",
+      "font_body": "roboto_n4",
+      "font_logo": "bitter_n7",
+      "font_heading": "bitter_n7",
+      "font_button": "roboto_n7",
+      "font_logo_capitalize": true,
+      "font_heading_capitalize": false,
+      "font_section_heading_capitalize": true,
+      "font_meta_capitalize": true,
+      "font_button_capitalize": true,
+      "header-show-breadcrumbs": false,
+      "sections": {
+        "general-header": {
+          "type": "general-header",
+          "settings": {
+            "menu_style": "drawer",
+            "color_override": "default"
+          }
+        },
+        "module-product-slideshow": {
+          "type": "module-product-slideshow",
+          "settings": {
+            "slideshow_color": "#68574d",
+            "slideshow_layout": "full-bleed",
+            "slideshow_transition": "transition-slide",
+            "autoplay": true,
+            "frequency": 5
+          }
+        },
+        "home-slideshow": {
+          "type": "home-slideshow",
+          "blocks": {
+            "slide-1": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            },
+            "slide-2": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1",
+            "slide-2"
+          ],
+          "settings": {
+            "enable": true,
+            "text_color": "#68574d",
+            "slideshow_layout": "full-bleed",
+            "autoplay": true,
+            "frequency": 6
+          }
+        },
+        "home-image-with-text": {
+          "type": "home-image-with-text",
+          "settings": {
+            "style": "default-style",
+            "media_layout": "regular"
+          }
+        },
+        "home-text-columns-with-images": {
+          "type": "home-text-columns-with-images",
+          "blocks": {
+            "column-1": {
+              "type": "text_column",
+              "settings": {}
+            },
+            "column-2": {
+              "type": "text_column",
+              "settings": {}
+            },
+            "column-3": {
+              "type": "text_column",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "column-1",
+            "column-2",
+            "column-3"
+          ],
+          "settings": {
+            "style": "contrast-style"
+          }
+        },
+        "home-testimonials": {
+          "type": "home-testimonials",
+          "blocks": {
+            "testimonial-1": {
+              "type": "testimonial",
+              "settings": {}
+            },
+            "testimonial-2": {
+              "type": "testimonial",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "testimonial-1",
+            "testimonial-2"
+          ],
+          "settings": {
+            "style": "default-style"
+          }
+        },
+        "home-featured-product": {
+          "type": "home-featured-product",
+          "settings": {
+            "style": "contrast-style",
+            "title": "Featured product"
+          }
+        },
+        "home-instagram": {
+          "type": "home-instagram",
+          "settings": {
+            "style": "default-style"
+          }
+        }
+      },
+      "content_for_index": [
+        "home-image-with-text",
+        "home-text-columns-with-images",
+        "home-testimonials",
+        "home-featured-product",
+        "home-instagram"
+      ]
+    },
+    "Tech": {
+      "background-color": "#ffffff",
+      "contrast-background-color": "#E05E60",
+      "body-text-color": "#51595D",
+      "accent-color": "#008090",
+      "heading-color": "#E05E60",
+      "meta-color": "#a0a2a3",
+      "error-color": "#b84949",
+      "border-color": "#D7DCDE",
+      "primary-button-color": "#ffffff",
+      "header-link-color": "#2cbb84",
+      "header-dropdown-color": "#d7dcde",
+      "footer-background-color": "#272B32",
+      "footer-header-color": "#ffffff",
+      "footer-accent-color": "#2CBB84",
+      "form-select-background": "#f4f5f5",
+      "form-select-color": "#2cbb84",
+      "form-select-border-color": "#d7dcde",
+      "font_body": "open_sans_n4",
+      "font_logo": "open_sans_n7",
+      "font_heading": "open_sans_n7",
+      "font_button": "roboto_n7",
+      "font_logo_capitalize": false,
+      "font_heading_capitalize": false,
+      "font_section_heading_capitalize": false,
+      "font_meta_capitalize": false,
+      "font_button_capitalize": true,
+      "header-show-breadcrumbs": false,
+      "sections": {
+        "general-header": {
+          "type": "general-header",
+          "settings": {
+            "header_sticky": true,
+            "menu_style": "header"
+          }
+        },
+        "module-product-slideshow": {
+          "type": "module-product-slideshow",
+          "settings": {
+            "slideshow_color": "#2e3438",
+            "slideshow_layout": "content-width",
+            "autoplay": false
+          }
+        },
+        "home-slideshow": {
+          "type": "home-slideshow",
+          "blocks": {
+            "slide-1": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            },
+            "slide-2": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1",
+            "slide-2"
+          ],
+          "settings": {
+            "enable": false,
+            "text_color": "#2e3438",
+            "slideshow_layout": "content-width",
+            "autoplay": false
+          }
+        },
+        "home-promotion": {
+          "type": "home-promotion",
+          "settings": {
+            "style": "default-style"
+          }
+        },
+        "home-image-with-text": {
+          "type": "home-image-with-text",
+          "settings": {
+            "style": "contrast-style",
+            "media_layout": "regular"
+          }
+        },
+        "home-alternating-content": {
+          "type": "home-alternating-content",
+          "blocks": {
+            "home-alternating-content-1": {
+              "type": "image",
+              "settings": {
+                "media_alignment": "left"
+              }
+            },
+            "home-alternating-content-2": {
+              "type": "image",
+              "settings": {
+                "media_alignment": "right"
+              }
+            }
+          },
+          "block_order": [
+            "home-alternating-content-1",
+            "home-alternating-content-2"
+          ],
+          "settings": {
+            "style": "default-style",
+            "title": "Alternating content",
+            "show_borders": false
+          }
+        },
+        "home-testimonials": {
+          "type": "home-testimonials",
+          "blocks": {
+            "testimonial-1": {
+              "type": "testimonial",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "testimonial-1"
+          ],
+          "settings": {
+            "style": "contrast-style"
+          }
+        },
+        "home-featured-product": {
+          "type": "home-featured-product",
+          "settings": {
+            "style": "default-style",
+            "title": "Featured product"
+          }
+        },
+        "home-instagram": {
+          "type": "home-instagram",
+          "settings": {
+            "style": "contrast-style"
+          }
+        }
+      },
+      "content_for_index": [
+        "home-promotion",
+        "home-image-with-text",
+        "home-alternating-content",
+        "home-testimonials",
+        "home-featured-product",
+        "home-instagram"
+      ]
+    },
+    "Cloth": {
+      "background-color": "#ffffff",
+      "contrast-background-color": "#2E3438",
+      "body-text-color": "#838B8F",
+      "accent-color": "#4E7B99",
+      "heading-color": "#2E3438",
+      "meta-color": "#838b8f",
+      "error-color": "#b8474f",
+      "border-color": "#EDF0F2",
+      "primary-button-color": "#ffffff",
+      "header-link-color": "#838B8F",
+      "header-dropdown-color": "#D7DCDE",
+      "form-select-background": "#F4F5F5",
+      "form-select-color": "#838B8F",
+      "form-select-border-color": "#D7DCDE",
+      "footer-background-color": "#4E7B99",
+      "footer-header-color": "#ffffff",
+      "footer-accent-color": "#ffffff",
+      "font_body": "open_sans_n4",
+      "font_logo": "open_sans_n7",
+      "font_heading": "volkhov_n7",
+      "font_button": "volkhov_n7",
+      "font_logo_capitalize": true,
+      "font_heading_capitalize": false,
+      "font_section_heading_capitalize": true,
+      "font_meta_capitalize": true,
+      "font_button_capitalize": true,
+      "header-show-breadcrumbs": false,
+      "sections": {
+        "general-header": {
+          "type": "general-header",
+          "settings": {
+            "menu_style": "below-header"
+          }
+        },
+        "module-product-slideshow": {
+          "type": "module-product-slideshow",
+          "settings": {
+            "slideshow_color": "#989ea0",
+            "slideshow_layout": "content-width",
+            "autoplay": false
+          }
+        },
+        "home-slideshow": {
+          "type": "home-slideshow",
+          "blocks": {
+            "slide-1": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            },
+            "slide-2": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1",
+            "slide-2"
+          ],
+          "settings": {
+            "enable": true,
+            "show_shadows": true,
+            "text_color": "#989ea0",
+            "slideshow_layout": "full-width",
+            "autoplay": false
+          }
+        },
+        "home-image-with-text": {
+          "type": "home-image-with-text",
+          "settings": {
+            "style": "default-style",
+            "media_layout": "regular"
+          }
+        },
+        "home-text-columns-with-images": {
+          "type": "home-text-columns-with-images",
+          "blocks": {
+            "column-1": {
+              "type": "text_column",
+              "settings": {}
+            },
+            "column-2": {
+              "type": "text_column",
+              "settings": {}
+            },
+            "column-3": {
+              "type": "text_column",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "column-1",
+            "column-2",
+            "column-3"
+          ],
+          "settings": {
+            "style": "contrast-style"
+          }
+        },
+        "home-testimonials": {
+          "type": "home-testimonials",
+          "blocks": {
+            "testimonial-1": {
+              "type": "testimonial",
+              "settings": {}
+            },
+            "testimonial-2": {
+              "type": "testimonial",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "testimonial-1",
+            "testimonial-2"
+          ],
+          "settings": {
+            "style": "default-style"
+          }
+        },
+        "home-featured-product": {
+          "type": "home-featured-product",
+          "settings": {
+            "style": "default-style",
+            "title": "Featured product"
+          }
+        },
+        "home-instagram": {
+          "type": "home-instagram",
+          "settings": {
+            "style": "default-style"
+          }
+        },
+        "home-alternating-content": {
+          "type": "home-alternating-content",
+          "blocks": {
+            "home-alternating-content-1": {
+              "type": "image",
+              "settings": {
+                "media_alignment": "left"
+              }
+            },
+            "home-alternating-content-2": {
+              "type": "image",
+              "settings": {
+                "media_alignment": "right"
+              }
+            },
+            "home-alternating-content-3": {
+              "type": "image",
+              "settings": {
+                "media_alignment": "left"
+              }
+            }
+          },
+          "block_order": [
+            "home-alternating-content-1",
+            "home-alternating-content-2",
+            "home-alternating-content-3"
+          ],
+          "settings": {
+            "style": "default-style",
+            "title": "Alternating content",
+            "show_borders": true
+          }
+        },
+        "home-featured-collection": {
+          "type": "home-featured-collection",
+          "settings": {
+            "style": "default-style",
+            "title": "Featured collection"
+          }
+        },
+        "home-logo-list": {
+          "type": "home-logo-list",
+          "blocks": {
+            "logo-1": {
+              "type": "logo",
+              "settings": {}
+            },
+            "logo-2": {
+              "type": "logo",
+              "settings": {}
+            },
+            "logo-3": {
+              "type": "logo",
+              "settings": {}
+            },
+            "logo-4": {
+              "type": "logo",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "logo-1",
+            "logo-2",
+            "logo-3",
+            "logo-4"
+          ],
+          "settings": {
+            "style": "default-style"
+          }
+        }
+      },
+      "content_for_index": [
+        "home-image-with-text",
+        "home-alternating-content",
+        "home-text-columns-with-images",
+        "home-testimonials",
+        "home-featured-product",
+        "home-featured-collection",
+        "home-logo-list",
+        "home-instagram"
+      ]
+    },
+    "Art": {
+      "background-color": "#ffffff",
+      "contrast-background-color": "#6FC3C4",
+      "body-text-color": "#060C0C",
+      "accent-color": "#0B8484",
+      "heading-color": "#060C0C",
+      "meta-color": "#a0a2a3",
+      "error-color": "#b84949",
+      "border-color": "#e8eced",
+      "primary-button-color": "#ffffff",
+      "header-link-color": "#0B8484",
+      "header-dropdown-color": "#b8c8c8",
+      "form-select-background": "#ffffff",
+      "form-select-color": "#6a9898",
+      "form-select-border-color": "#b8c8c8",
+      "footer-background-color": "#050D0E",
+      "footer-header-color": "#ffffff",
+      "footer-accent-color": "#5FB8B7",
+      "font_body": "montserrat_n4",
+      "font_logo": "montserrat_n7",
+      "font_heading": "montserrat_n7",
+      "font_button": "montserrat_n7",
+      "font_logo_capitalize": true,
+      "font_heading_capitalize": false,
+      "font_section_heading_capitalize": true,
+      "font_meta_capitalize": true,
+      "font_button_capitalize": true,
+      "header-show-breadcrumbs": false,
+      "sections": {
+        "general-header": {
+          "type": "general-header",
+          "settings": {
+            "header_sticky": true,
+            "menu_style": "header"
+          }
+        },
+        "module-product-slideshow": {
+          "type": "module-product-slideshow",
+          "settings": {
+            "slideshow_color": "#060c0c",
+            "slideshow_layout": "content-width",
+            "autoplay": false
+          }
+        },
+        "home-slideshow": {
+          "type": "home-slideshow",
+          "blocks": {
+            "slide-1": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            },
+            "slide-2": {
+              "type": "slide",
+              "settings": {
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slide-1",
+            "slide-2"
+          ],
+          "settings": {
+            "enable": false,
+            "text_color": "#060c0c",
+            "slideshow_layout": "full-width",
+            "autoplay": false
+          }
+        },
+        "home-promotion": {
+          "type": "home-promotion",
+          "settings": {
+            "style": "default-style"
+          }
+        },
+        "home-image-with-text": {
+          "type": "home-image-with-text",
+          "settings": {
+            "style": "contrast-style",
+            "media_layout": "regular"
+          }
+        },
+        "home-featured-product": {
+          "type": "home-featured-product",
+          "settings": {
+            "style": "default-style",
+            "title": "Featured product"
+          }
+        },
+        "home-featured-collection": {
+          "type": "home-featured-collection",
+          "settings": {
+            "style": "contrast-style",
+            "title": "Featured collection"
+          }
+        },
+        "home-testimonials": {
+          "type": "home-testimonials",
+          "blocks": {
+            "testimonial-1": {
+              "type": "testimonial",
+              "settings": {}
+            },
+            "testimonial-2": {
+              "type": "testimonial",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "testimonial-1",
+            "testimonial-2"
+          ],
+          "settings": {
+            "style": "default-style"
+          }
+        },
+        "home-instagram": {
+          "type": "home-instagram",
+          "settings": {
+            "style": "contrast-style"
+          }
+        }
+      },
+      "content_for_index": [
+        "home-promotion",
+        "home-image-with-text",
+        "home-featured-product",
+        "home-featured-collection",
+        "home-testimonials",
+        "home-instagram"
+      ]
+    }
+  }
+}
