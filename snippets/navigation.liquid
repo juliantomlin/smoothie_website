@@ -3,12 +3,8 @@
     - Pass as 'below-header' to enable meganav.
     - 'below-header' must not be passed to drawer
 {% endcomment %}
-    {% if collection.handle == 'build-your-order' %}
-<div class="build-header-info">MIN. ORDER: 6 SMOOTHIES. PROMOS + FREE LOCAL DELIVERY: 12 SMOOTHIES. </div>
 
-    {% else %}
-
-<nav class="navigation {% if style %}{{ style }}{% endif %}"style="{% if collection.handle == 'build-your-order' %}display:none;{% endif %}">
+<nav class="navigation {% if style %}{{ style }}{% endif %}">
   <ul class="primary">
     {% for link in linklists[section.settings.menu].links %}
       {%
@@ -83,4 +79,3 @@
 
   </ul>
 </nav>
-  {% endif %}
