@@ -26,8 +26,11 @@
         include 'is-dropdown-or-meganav',
         first_tier_link: link
       %}
+
       {% if link.url contains current_url %}
         {% assign current_page = true %}
+      {% elsif link.url contains 'build-your-order'%}
+        {% assign call_to_action = true %}
       {% else %}
         {% assign current_page = false %}
       {% endif %}
@@ -43,7 +46,7 @@
       {% endif %}
 
       <li class="{% if is_dropdown or is_meganav %}has-dropdown{% if is_meganav %} has-mega-nav{% else %} simple-dropdown{% endif %}{% endif %}">
-        <a class="main-nav-item {% if current_page %}current-page{% endif %}" href="{{ link.url }}"{% if is_dropdown or is_meganav %} aria-haspopup{% endif %}>
+        <a class="main-nav-item {% if current_page %}current-page{% endif %} {% if call_to_action %}call-to-action{% endif %}" href="{{ link.url }}"{% if is_dropdown or is_meganav %} aria-haspopup{% endif %}>
           {{link.title}}
 
           {% if is_dropdown or is_meganav %}

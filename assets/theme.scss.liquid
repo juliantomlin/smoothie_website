@@ -8559,7 +8559,7 @@ $slideshow-gutter: 70px + $gutter;
       padding: 3px;
     }
   }
-nav > ul > li:nth-child(5) > a {
+.call-to-action {
     @extend %font-smoothing;
   @include font($font-button);
   display: inline-block;
@@ -8578,6 +8578,19 @@ nav > ul > li:nth-child(5) > a {
       background: $color-accent-hover;
     }
 }
+
+.current-page {
+  text-decoration: underline;
+  color: black !important;
+  background-color: none !important;
+}
+
+.current-page .call-to-action{
+  text-decoration: underline;
+  color: black !important;
+  background-color: black;
+}
+
 .bold-ro__one-time-div {
   display: none;
   float: left;
