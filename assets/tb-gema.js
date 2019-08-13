@@ -9,7 +9,7 @@ var gema = {
 	if(json.products.length > 0)
     {
 		$.each(json.products, function( index, value ) {
-      console.log("hello", index, value)
+      //console.log("hello", index, value)
       images_thumb = '';
       content_images_thumb = '';
       cl_thumb = '';

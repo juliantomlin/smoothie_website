@@ -6,11 +6,31 @@
 
 <nav class="navigation {% if style %}{{ style }}{% endif %}">
   <ul class="primary">
+    {% assign current_url = '' %}
+
+    {% case template %}
+    {% when 'page' %}
+    {% assign current_url = page.url %}
+    {% when 'blog' %}
+    {% assign current_url = blog.url %}
+    {% when 'article' %}
+    {% assign current_url = blog.url %}
+    {% when 'collection' %}
+    {% assign current_url = collection.url %}
+    {% when 'product' %}
+    {% assign current_url = product.url %}
+    {% endcase %}
+
     {% for link in linklists[section.settings.menu].links %}
       {%
         include 'is-dropdown-or-meganav',
         first_tier_link: link
       %}
+      {% if link.url contains current_url %}
+        {% assign current_page = true %}
+      {% else %}
+        {% assign current_page = false %}
+      {% endif %}
 
       {% if style != 'below-header' %}
         {% if is_meganav and style == 'mobile' %}
@@ -23,8 +43,8 @@
       {% endif %}
 
       <li class="{% if is_dropdown or is_meganav %}has-dropdown{% if is_meganav %} has-mega-nav{% else %} simple-dropdown{% endif %}{% endif %}">
-        <a class="main-nav-item" href="{{ link.url }}"{% if is_dropdown or is_meganav %} aria-haspopup{% endif %}>
-          {{ link.title }}
+        <a class="main-nav-item {% if current_page %}current-page{% endif %}" href="{{ link.url }}"{% if is_dropdown or is_meganav %} aria-haspopup{% endif %}>
+          {{link.title}}
 
           {% if is_dropdown or is_meganav %}
             <div class="dropdown-toggle" tabIndex="0" role="button" aria-controls="navigation-{{ link.handle }}" aria-expanded="false">
