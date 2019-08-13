@@ -6,33 +6,19 @@
 
 <nav class="navigation {% if style %}{{ style }}{% endif %}">
   <ul class="primary">
-    {% assign current_url = '' %}
 
-    {% case template %}
-    {% when 'page' %}
-    {% assign current_url = page.url %}
-    {% when 'blog' %}
-    {% assign current_url = blog.url %}
-    {% when 'article' %}
-    {% assign current_url = blog.url %}
-    {% when 'collection' %}
-    {% assign current_url = collection.url %}
-    {% when 'product' %}
-    {% assign current_url = product.url %}
-    {% endcase %}
 
     {% for link in linklists[section.settings.menu].links %}
       {%
         include 'is-dropdown-or-meganav',
         first_tier_link: link
       %}
+      {% assign current_page = false %}
 
-      {% if link.url contains current_url %}
+      {% if request.path contains link.url %}
         {% assign current_page = true %}
       {% elsif link.url contains 'build-your-order'%}
         {% assign call_to_action = true %}
-      {% else %}
-        {% assign current_page = false %}
       {% endif %}
 
       {% if style != 'below-header' %}
