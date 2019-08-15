@@ -21,7 +21,7 @@
   {%- endcapture -%}
 {% endunless %}
 <div
-  class="main-header-wrapper {% if collection.handle == 'build-your-order' %}mobile-sticky{% endif %} {{ additional_classes | strip_newlines }}"
+  class="main-header-wrapper {{ additional_classes | strip_newlines }}"
   {% unless password_page %}
     data-main-header="{{ section.settings.menu_style }}"
     data-header-bleed-color="header-bleed-{{ section.settings.color_override }}-colors"
@@ -36,10 +36,6 @@
   {% assign homepage_only = section.settings.promotion_home_only %}
   {% assign show_promotion = false %}
 
-  {% if enable_promotion and homepage_only == false and collection.handle != 'build-your-order' %}
-    {% assign show_promotion = true %}
-  {% endif %}
-
   {% if enable_promotion and homepage_only and template.name == 'index' %}
     {% assign show_promotion = true %}
   {% endif %}
@@ -48,7 +44,7 @@
     {% assign show_promotion = false %}
   {% endif %}
 
-  {% if show_promotion and password_page == false %}
+  {% if password_page == false %}
     <div class="header-promotion-bar {{ section.settings.promotion_style }}" data-promotion-bar>
       {% if section.settings.promotion_url != blank %}
         <a class="header-promotion-text" href="{{ section.settings.promotion_url }}">
@@ -124,21 +120,18 @@
               </select>
             </div>
           {% endif %}
-          {% if section.settings.show_search and collection.handle != 'build-your-order' %}
+          {% if section.settings.show_search %}
             <span class="header-search-toggle1 tb-open-mobile-search">&#57347;</span>
           {% endif %}
           {% if section.settings.show_cart %}
-            <a style="{% if collection.handle == 'build-your-order' and cart.item_count > 0 %}display: none;{% endif %}" class="cart-link {% if collection.handle == 'build-your-order' %}mobile-stack{% endif %}" href="/cart">&#57346;{% if collection.handle == 'build-your-order' %}<span class="cart-count">0</span>{% else %}<span class="cart-count">{{ cart.item_count }}</span>{% endif %}</a>
+            <a class="cart-link" href="/cart">&#57346;<span class="cart-count">{{ cart.item_count }}</span></a>
           {% endif %}
           {% if section.settings.menu_style == 'header' or section.settings.menu_style == 'below-header' %}
-            {% if shop.customer_accounts_enabled and collection.handle != 'build-your-order' %}
+            {% if shop.customer_accounts_enabled %}
           <a href="/account" class="account-link">&#57348;{% if customer %}<span class=account-logged-in>(Logged In)</span>{% endif %} </a>
             {% endif %}
           {% endif %}
-    {% if collection.handle == 'build-your-order' %}
-{% else %}
           <span class="drawer-toggle" data-drawer-toggle></span>
-          {% endif %}
         </div>
       </div>
     {% endunless %}
