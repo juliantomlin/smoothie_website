@@ -1,5 +1,6 @@
 var gema = {
   theme: function(json,data,$){
+    console.log(totalCartWeight)
     var tb = '',static = '',style_quick_view='',style_variants='',hover = '',badges = '',image = data.asset_url+'no-image.svg',images_thumb='',content_images_thumb='',cl_thumb='',image_content = '',compare_at_price = '',buttons = '',paginateTop='',paginateBottom='';
     if(json.collection)
     {
@@ -61,7 +62,7 @@ var gema = {
       {
         buttons =
           '<div class="tb-content-button-add-to-cart">\
-            <a class="tb-button-add-to-cart btn" href="javascript:void(0);" onclick="gema.updateBar()">\
+            <a class="tb-button-add-to-cart btn" href="javascript:void(0);" onclick="ProductView.prototype.test()">\
               Add to cart\
             </a>\
             <a href="/products/'+value.handle+'" class="tb-button-details btn btn--secondary" href="javascript:void(0);">\
@@ -150,7 +151,8 @@ var gema = {
         return t
     }
   },
-  updateBar:function() {
-    $('#cart-progress-bar').html("<div class='cart-pip' style='width: " + (6000/12000)*100 + "%'></div>")
+  updateBar:function(progress) {
+    console.log(totalCartWeight)
+    $('#cart-progress-bar').html("<div class='cart-pip' style='width: " + (progress/12000)*100 + "%'></div>")
   }
 }

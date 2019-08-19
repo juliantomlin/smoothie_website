@@ -3,6 +3,7 @@
 {% if collection.image and section.settings.show_featured_image %}
   {% assign collection_image = collection.image %}
 {% endif %}
+
 <div
   style="{% if collection.handle contains 'build-your-order' %}display: none;{% endif %}"
   class="collection-header-wrapper {% if collection_image %}collection-header-has-image{% endif %} {% if collection.handle contains 'build-your-order' %}build-collection {% endif %}"
