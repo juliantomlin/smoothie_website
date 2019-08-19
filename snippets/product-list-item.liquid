@@ -22,7 +22,7 @@
   <figure class="product-list-item-thumbnail {% if collection.handle contains 'build-your-order' %} link-not-active {% endif %}">
     {% unless onboarding %}
 {% unless collection.url contains 'build-your-order' %}     <div class="reveal" >{% endunless %}
-	  
+
       <a href="{{ item.url | within: collection }}" >
         {%
           include 'rimg',
@@ -31,7 +31,7 @@
           size: '600x600',
           lazy: true
         %}
-{% unless collection.url contains 'build-your-order' %}        
+{% unless collection.url contains 'build-your-order' %}
         <div class="hidden">
           <a href="{{ item.url | within: collection }}" >  <img src="{{ product.images.last | img_url: 'large' }}" alt="{{ product.images.last.alt | escape }}" /></a>
   </div>
@@ -48,7 +48,7 @@
       <a href="#">
         {{ onboarding_image }}
       </a>
-      
+
     </div>
     {% endunless %}
     {% else %}
@@ -74,7 +74,7 @@
       <a href="#">
         {{ onboarding_image }}
       </a>
-      
+
     {% endunless %}
       {% endif %}
   </figure>
@@ -135,7 +135,7 @@
           {{ 'products.product.sold_out' | t }}
         {% endif %}
       </p>
-    
+
     {% if collection.handle == 'build-your-order' %}
 <form method="post" action="/cart/add">
   <input type="hidden" name="id" value="{{ product.variants.first.id }}" />

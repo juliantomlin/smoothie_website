@@ -59,7 +59,15 @@ var gema = {
 
     	if(data.quickv > 0)
       {
-        buttons = '<div class="tb-content-button-add-to-cart"><a class="tb-button-add-to-cart btn" href="javascript:void(0);">Add to cart</a><a href="/products/'+value.handle+'" class="tb-button-details btn btn--secondary" href="javascript:void(0);">Details</a></div>';
+        buttons =
+          '<div class="tb-content-button-add-to-cart">\
+            <a class="tb-button-add-to-cart btn" href="javascript:void(0);" onclick="gema.updateBar()">\
+              Add to cart\
+            </a>\
+            <a href="/products/'+value.handle+'" class="tb-button-details btn btn--secondary" href="javascript:void(0);">\
+              Details\
+            </a>\
+          </div>';
       }
       if(data.swatchv == 0)
       {
@@ -142,4 +150,7 @@ var gema = {
         return t
     }
   },
+  updateBar:function() {
+    $('#cart-progress-bar').html("<div class='cart-pip' style='width: " + (6000/12000)*100 + "%'></div>")
+  }
 }

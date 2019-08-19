@@ -32,6 +32,13 @@
     {% endif %}
   </div>
 </div>
+
+{% if collection.handle contains 'build-your-order' %}
+  <div id="cart-progress-bar">
+
+  </div>
+{% endif %}
+
 <div style="max-width: 1290px; margin: 0 auto;">
     {% include 'apolomultimedia-filter' %}
 </div>

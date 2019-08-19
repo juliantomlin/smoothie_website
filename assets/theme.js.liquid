@@ -1340,6 +1340,9 @@ window.ProductView = (function(superClass) {
               Shopify.getCart(function(cart) {
                 return $('.cart-link .cart-count').text(cart.item_count);
               });
+              Shopify.getCart(function(cart) {
+                return $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + cart.total_weight/12000 + "%'></div>")
+              });
               successMessage = _this.productSettings.successMessage.replace('** product **', cartItem.title);
               $('input[name="quantity"]', _this.$el).removeClass('error');
               $('.add-to-cart', _this.$el).removeClass('loading');
@@ -3067,7 +3070,7 @@ window.ThemeEditor = (function(superClass) {
       Registration of a section
           - Takes a string parameter as the first argument which
             matches to `[data-section-type]`
-  
+
        * Example
           @sections = new Sections()
           @sections.register('some-section-type', @someSectionClass)
@@ -3161,7 +3164,7 @@ window.SlideshowView = (function(superClass) {
     /*
         On slide change, find the new height of the slide and set it as the
         height of the slider
-    
+
         TODO: On upgrade to Flickity 2, change this to `select`
      */
     this.slideShow.on('cellSelect', (function(_this) {
@@ -3645,17 +3648,17 @@ return PxsMap;
      *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
      *
      */
-    
+
     (function(window, document) {
     'use strict';
-    
-    
+
+
     // Exits early if all IntersectionObserver and IntersectionObserverEntry
     // features are natively supported.
     if ('IntersectionObserver' in window &&
         'IntersectionObserverEntry' in window &&
         'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
-    
+
       // Minimal polyfill for Edge 15's lack of `isIntersecting`
       // See: https://github.com/w3c/IntersectionObserver/issues/211
       if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
@@ -3668,8 +3671,8 @@ return PxsMap;
       }
       return;
     }
-    
-    
+
+
     /**
      * An IntersectionObserver registry. This registry exists to hold a strong
      * reference to IntersectionObserver instances currently observering a target
@@ -3677,8 +3680,8 @@ return PxsMap;
      * garbage collected.
      */
     var registry = [];
-    
-    
+
+
     /**
      * Creates the global IntersectionObserverEntry constructor.
      * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
@@ -3692,13 +3695,13 @@ return PxsMap;
       this.boundingClientRect = entry.boundingClientRect;
       this.intersectionRect = entry.intersectionRect || getEmptyRect();
       this.isIntersecting = !!entry.intersectionRect;
-    
+
       // Calculates the intersection ratio.
       var targetRect = this.boundingClientRect;
       var targetArea = targetRect.width * targetRect.height;
       var intersectionRect = this.intersectionRect;
       var intersectionArea = intersectionRect.width * intersectionRect.height;
-    
+
       // Sets intersection ratio.
       if (targetArea) {
         this.intersectionRatio = intersectionArea / targetArea;
@@ -3707,8 +3710,8 @@ return PxsMap;
         this.intersectionRatio = this.isIntersecting ? 1 : 0;
       }
     }
-    
-    
+
+
     /**
      * Creates the global IntersectionObserver constructor.
      * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
@@ -3719,27 +3722,27 @@ return PxsMap;
      * @constructor
      */
     function IntersectionObserver(callback, opt_options) {
-    
+
       var options = opt_options || {};
-    
+
       if (typeof callback != 'function') {
         throw new Error('callback must be a function');
       }
-    
+
       if (options.root && options.root.nodeType != 1) {
         throw new Error('root must be an Element');
       }
-    
+
       // Binds and throttles `this._checkForIntersections`.
       this._checkForIntersections = throttle(
           this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
-    
+
       // Private properties.
       this._callback = callback;
       this._observationTargets = [];
       this._queuedEntries = [];
       this._rootMarginValues = this._parseRootMargin(options.rootMargin);
-    
+
       // Public properties.
       this.thresholds = this._initThresholds(options.threshold);
       this.root = options.root || null;
@@ -3747,29 +3750,29 @@ return PxsMap;
         return margin.value + margin.unit;
       }).join(' ');
     }
-    
-    
+
+
     /**
      * The minimum interval within which the document will be checked for
      * intersection changes.
      */
     IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
-    
-    
+
+
     /**
      * The frequency in which the polyfill polls for intersection changes.
      * this can be updated on a per instance basis and must be set prior to
      * calling `observe` on the first target.
      */
     IntersectionObserver.prototype.POLL_INTERVAL = null;
-    
+
     /**
      * Use a mutation observer on the root element
      * to detect intersection changes.
      */
     IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
-    
-    
+
+
     /**
      * Starts observing a target element for intersection changes based on
      * the thresholds values.
@@ -3779,22 +3782,22 @@ return PxsMap;
       var isTargetAlreadyObserved = this._observationTargets.some(function(item) {
         return item.element == target;
       });
-    
+
       if (isTargetAlreadyObserved) {
         return;
       }
-    
+
       if (!(target && target.nodeType == 1)) {
         throw new Error('target must be an Element');
       }
-    
+
       this._registerInstance();
       this._observationTargets.push({element: target, entry: null});
       this._monitorIntersections();
       this._checkForIntersections();
     };
-    
-    
+
+
     /**
      * Stops observing a target element for intersection changes.
      * @param {Element} target The DOM element to observe.
@@ -3802,7 +3805,7 @@ return PxsMap;
     IntersectionObserver.prototype.unobserve = function(target) {
       this._observationTargets =
           this._observationTargets.filter(function(item) {
-    
+
         return item.element != target;
       });
       if (!this._observationTargets.length) {
@@ -3810,8 +3813,8 @@ return PxsMap;
         this._unregisterInstance();
       }
     };
-    
-    
+
+
     /**
      * Stops observing all target elements for intersection changes.
      */
@@ -3820,8 +3823,8 @@ return PxsMap;
       this._unmonitorIntersections();
       this._unregisterInstance();
     };
-    
-    
+
+
     /**
      * Returns any queue entries that have not yet been reported to the
      * callback and clears the queue. This can be used in conjunction with the
@@ -3833,8 +3836,8 @@ return PxsMap;
       this._queuedEntries = [];
       return records;
     };
-    
-    
+
+
     /**
      * Accepts the threshold value from the user configuration object and
      * returns a sorted array of unique threshold values. If a value is not
@@ -3847,7 +3850,7 @@ return PxsMap;
     IntersectionObserver.prototype._initThresholds = function(opt_threshold) {
       var threshold = opt_threshold || [0];
       if (!Array.isArray(threshold)) threshold = [threshold];
-    
+
       return threshold.sort().filter(function(t, i, a) {
         if (typeof t != 'number' || isNaN(t) || t < 0 || t > 1) {
           throw new Error('threshold must be a number between 0 and 1 inclusively');
@@ -3855,8 +3858,8 @@ return PxsMap;
         return t !== a[i - 1];
       });
     };
-    
-    
+
+
     /**
      * Accepts the rootMargin value from the user configuration object
      * and returns an array of the four margin values as an object containing
@@ -3877,16 +3880,16 @@ return PxsMap;
         }
         return {value: parseFloat(parts[1]), unit: parts[2]};
       });
-    
+
       // Handles shorthand.
       margins[1] = margins[1] || margins[0];
       margins[2] = margins[2] || margins[0];
       margins[3] = margins[3] || margins[1];
-    
+
       return margins;
     };
-    
-    
+
+
     /**
      * Starts polling for intersection changes if the polling is not already
      * happening, and if the page's visibilty state is visible.
@@ -3895,7 +3898,7 @@ return PxsMap;
     IntersectionObserver.prototype._monitorIntersections = function() {
       if (!this._monitoringIntersections) {
         this._monitoringIntersections = true;
-    
+
         // If a poll interval is set, use polling instead of listening to
         // resize and scroll events or DOM mutations.
         if (this.POLL_INTERVAL) {
@@ -3905,7 +3908,7 @@ return PxsMap;
         else {
           addEvent(window, 'resize', this._checkForIntersections, true);
           addEvent(document, 'scroll', this._checkForIntersections, true);
-    
+
           if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in window) {
             this._domObserver = new MutationObserver(this._checkForIntersections);
             this._domObserver.observe(document, {
@@ -3918,8 +3921,8 @@ return PxsMap;
         }
       }
     };
-    
-    
+
+
     /**
      * Stops polling for intersection changes.
      * @private
@@ -3927,21 +3930,21 @@ return PxsMap;
     IntersectionObserver.prototype._unmonitorIntersections = function() {
       if (this._monitoringIntersections) {
         this._monitoringIntersections = false;
-    
+
         clearInterval(this._monitoringInterval);
         this._monitoringInterval = null;
-    
+
         removeEvent(window, 'resize', this._checkForIntersections, true);
         removeEvent(document, 'scroll', this._checkForIntersections, true);
-    
+
         if (this._domObserver) {
           this._domObserver.disconnect();
           this._domObserver = null;
         }
       }
     };
-    
-    
+
+
     /**
      * Scans each observation target for intersection changes and adds them
      * to the internal entries queue. If new entries are found, it
@@ -3951,7 +3954,7 @@ return PxsMap;
     IntersectionObserver.prototype._checkForIntersections = function() {
       var rootIsInDom = this._rootIsInDom();
       var rootRect = rootIsInDom ? this._getRootRect() : getEmptyRect();
-    
+
       this._observationTargets.forEach(function(item) {
         var target = item.element;
         var targetRect = getBoundingClientRect(target);
@@ -3959,7 +3962,7 @@ return PxsMap;
         var oldEntry = item.entry;
         var intersectionRect = rootIsInDom && rootContainsTarget &&
             this._computeTargetAndRootIntersection(target, rootRect);
-    
+
         var newEntry = item.entry = new IntersectionObserverEntry({
           time: now(),
           target: target,
@@ -3967,7 +3970,7 @@ return PxsMap;
           rootBounds: rootRect,
           intersectionRect: intersectionRect
         });
-    
+
         if (!oldEntry) {
           this._queuedEntries.push(newEntry);
         } else if (rootIsInDom && rootContainsTarget) {
@@ -3985,13 +3988,13 @@ return PxsMap;
           }
         }
       }, this);
-    
+
       if (this._queuedEntries.length) {
         this._callback(this.takeRecords(), this);
       }
     };
-    
-    
+
+
     /**
      * Accepts a target and root rect computes the intersection between then
      * following the algorithm in the spec.
@@ -4006,23 +4009,23 @@ return PxsMap;
      */
     IntersectionObserver.prototype._computeTargetAndRootIntersection =
         function(target, rootRect) {
-    
+
       // If the element isn't displayed, an intersection can't happen.
       if (window.getComputedStyle(target).display == 'none') return;
-    
+
       var targetRect = getBoundingClientRect(target);
       var intersectionRect = targetRect;
       var parent = getParentNode(target);
       var atRoot = false;
-    
+
       while (!atRoot) {
         var parentRect = null;
         var parentComputedStyle = parent.nodeType == 1 ?
             window.getComputedStyle(parent) : {};
-    
+
         // If the parent isn't displayed, an intersection can't happen.
         if (parentComputedStyle.display == 'none') return;
-    
+
         if (parent == this.root || parent == document) {
           atRoot = true;
           parentRect = rootRect;
@@ -4037,20 +4040,20 @@ return PxsMap;
             parentRect = getBoundingClientRect(parent);
           }
         }
-    
+
         // If either of the above conditionals set a new parentRect,
         // calculate new intersection data.
         if (parentRect) {
           intersectionRect = computeRectIntersection(parentRect, intersectionRect);
-    
+
           if (!intersectionRect) break;
         }
         parent = getParentNode(parent);
       }
       return intersectionRect;
     };
-    
-    
+
+
     /**
      * Returns the root rect after being expanded by the rootMargin value.
      * @return {Object} The expanded root rect.
@@ -4075,8 +4078,8 @@ return PxsMap;
       }
       return this._expandRectByRootMargin(rootRect);
     };
-    
-    
+
+
     /**
      * Accepts a rect and expands it by the rootMargin value.
      * @param {Object} rect The rect object to expand.
@@ -4096,11 +4099,11 @@ return PxsMap;
       };
       newRect.width = newRect.right - newRect.left;
       newRect.height = newRect.bottom - newRect.top;
-    
+
       return newRect;
     };
-    
-    
+
+
     /**
      * Accepts an old and new entry and returns true if at least one of the
      * threshold values has been crossed.
@@ -4113,20 +4116,20 @@ return PxsMap;
      */
     IntersectionObserver.prototype._hasCrossedThreshold =
         function(oldEntry, newEntry) {
-    
+
       // To make comparing easier, an entry that has a ratio of 0
       // but does not actually intersect is given a value of -1
       var oldRatio = oldEntry && oldEntry.isIntersecting ?
           oldEntry.intersectionRatio || 0 : -1;
       var newRatio = newEntry.isIntersecting ?
           newEntry.intersectionRatio || 0 : -1;
-    
+
       // Ignore unchanged ratios
       if (oldRatio === newRatio) return;
-    
+
       for (var i = 0; i < this.thresholds.length; i++) {
         var threshold = this.thresholds[i];
-    
+
         // Return true if an entry matches a threshold or if the new ratio
         // and the old ratio are on the opposite sides of a threshold.
         if (threshold == oldRatio || threshold == newRatio ||
@@ -4135,8 +4138,8 @@ return PxsMap;
         }
       }
     };
-    
-    
+
+
     /**
      * Returns whether or not the root element is an element and is in the DOM.
      * @return {boolean} True if the root element is an element and is in the DOM.
@@ -4145,8 +4148,8 @@ return PxsMap;
     IntersectionObserver.prototype._rootIsInDom = function() {
       return !this.root || containsDeep(document, this.root);
     };
-    
-    
+
+
     /**
      * Returns whether or not the target element is a child of root.
      * @param {Element} target The target element to check.
@@ -4156,8 +4159,8 @@ return PxsMap;
     IntersectionObserver.prototype._rootContainsTarget = function(target) {
       return containsDeep(this.root || document, target);
     };
-    
-    
+
+
     /**
      * Adds the instance to the global IntersectionObserver registry if it isn't
      * already present.
@@ -4168,8 +4171,8 @@ return PxsMap;
         registry.push(this);
       }
     };
-    
-    
+
+
     /**
      * Removes the instance from the global IntersectionObserver registry.
      * @private
@@ -4178,8 +4181,8 @@ return PxsMap;
       var index = registry.indexOf(this);
       if (index != -1) registry.splice(index, 1);
     };
-    
-    
+
+
     /**
      * Returns the result of the performance.now() method or null in browsers
      * that don't support the API.
@@ -4188,8 +4191,8 @@ return PxsMap;
     function now() {
       return window.performance && performance.now && performance.now();
     }
-    
-    
+
+
     /**
      * Throttles a function and delays its executiong, so it's only called at most
      * once within a given time period.
@@ -4209,8 +4212,8 @@ return PxsMap;
         }
       };
     }
-    
-    
+
+
     /**
      * Adds an event handler to a DOM node ensuring cross-browser compatibility.
      * @param {Node} node The DOM node to add the event handler to.
@@ -4227,8 +4230,8 @@ return PxsMap;
         node.attachEvent('on' + event, fn);
       }
     }
-    
-    
+
+
     /**
      * Removes a previously added event handler from a DOM node.
      * @param {Node} node The DOM node to remove the event handler from.
@@ -4245,8 +4248,8 @@ return PxsMap;
         node.detatchEvent('on' + event, fn);
       }
     }
-    
-    
+
+
     /**
      * Returns the intersection between two rect objects.
      * @param {Object} rect1 The first rect.
@@ -4261,7 +4264,7 @@ return PxsMap;
       var right = Math.min(rect1.right, rect2.right);
       var width = right - left;
       var height = bottom - top;
-    
+
       return (width >= 0 && height >= 0) && {
         top: top,
         bottom: bottom,
@@ -4271,8 +4274,8 @@ return PxsMap;
         height: height
       };
     }
-    
-    
+
+
     /**
      * Shims the native getBoundingClientRect for compatibility with older IE.
      * @param {Element} el The element whose bounding rect to get.
@@ -4280,16 +4283,16 @@ return PxsMap;
      */
     function getBoundingClientRect(el) {
       var rect;
-    
+
       try {
         rect = el.getBoundingClientRect();
       } catch (err) {
         // Ignore Windows 7 IE11 "Unspecified error"
         // https://github.com/w3c/IntersectionObserver/pull/205
       }
-    
+
       if (!rect) return getEmptyRect();
-    
+
       // Older IE
       if (!(rect.width && rect.height)) {
         rect = {
@@ -4303,8 +4306,8 @@ return PxsMap;
       }
       return rect;
     }
-    
-    
+
+
     /**
      * Returns an empty rect object. An empty rect is returned when an element
      * is not in the DOM.
@@ -4320,7 +4323,7 @@ return PxsMap;
         height: 0
       };
     }
-    
+
     /**
      * Checks to see if a parent element contains a child elemnt (including inside
      * shadow DOM).
@@ -4332,13 +4335,13 @@ return PxsMap;
       var node = child;
       while (node) {
         if (node == parent) return true;
-    
+
         node = getParentNode(node);
       }
       return false;
     }
-    
-    
+
+
     /**
      * Gets the parent node of an element or its host element if the parent node
      * is a shadow root.
@@ -4347,21 +4350,21 @@ return PxsMap;
      */
     function getParentNode(node) {
       var parent = node.parentNode;
-    
+
       if (parent && parent.nodeType == 11 && parent.host) {
         // If the parent is a shadow root, return the host element.
         return parent.host;
       }
       return parent;
     }
-    
-    
+
+
     // Exposes the constructors globally.
     window.IntersectionObserver = IntersectionObserver;
     window.IntersectionObserverEntry = IntersectionObserverEntry;
-    
+
     }(window, document));
-    
+
     /*!
      * rimg v2.1.0
      * (c) 2018 Pixel Union
@@ -4371,7 +4374,7 @@ return PxsMap;
     	typeof define === 'function' && define.amd ? define(factory) :
     	(global.rimg = factory());
     }(this, (function () { 'use strict';
-    
+
     /**
      * The default template render function. Turns a template string into an image
      * URL.
@@ -4383,7 +4386,7 @@ return PxsMap;
     function defaultTemplateRender(template, size) {
       return template.replace('{size}', size.width + 'x' + size.height);
     }
-    
+
     /**
      * @type Settings
      */
@@ -4395,7 +4398,7 @@ return PxsMap;
       round: 32,
       placeholder: false
     };
-    
+
     /**
      * Get a data attribute value from an element, with a default fallback and
      * sanitization step.
@@ -4418,12 +4421,12 @@ return PxsMap;
     function getData(el, name, options, sanitize) {
       var attr = 'data-rimg-' + name;
       if (!el.hasAttribute(attr)) return options[name] || defaults[name];
-    
+
       var value = el.getAttribute(attr);
-    
+
       return sanitize ? sanitize(value) : value;
     }
-    
+
     /**
      * Sanitize data attributes that represent a size (in the form of `10x10`).
      *
@@ -4434,7 +4437,7 @@ return PxsMap;
       value = value.split('x');
       return { width: parseInt(value[0], 10), height: parseInt(value[1], 10) };
     }
-    
+
     /**
      * Loads information about an element.
      *
@@ -4447,40 +4450,40 @@ return PxsMap;
      */
     function parseItem(el) {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    
+
       var isImage = el.hasAttribute('data-rimg-template');
-    
+
       /**
        * @typedef {Settings} Item
        */
       return {
         el: el,
-    
+
         // Type of element
         isImage: isImage,
         isBackgroundImage: isImage && el.tagName !== 'IMG',
-    
+
         // Image scale
         scale: getData(el, 'scale', options),
-    
+
         // Device density
         density: window.devicePixelRatio || 1,
-    
+
         // Image template URL
         template: getData(el, 'template', options),
         templateRender: options.templateRender || defaults.templateRender,
-    
+
         // Maximum image dimensions
         max: getData(el, 'max', options, parseSize),
-    
+
         // Round image dimensions to the nearest multiple
         round: getData(el, 'round', options),
-    
+
         // Placeholder image dimensions
         placeholder: getData(el, 'placeholder', options, parseSize)
       };
     }
-    
+
     /**
      * Round to the nearest multiple.
      *
@@ -4493,7 +4496,7 @@ return PxsMap;
     function roundSize(size, multiple) {
       return Math.ceil(size / multiple) * multiple;
     }
-    
+
     /**
      * Get the size of an element.
      *
@@ -4508,17 +4511,17 @@ return PxsMap;
      */
     function getElementSize(el) {
       var size = { width: 0, height: 0 };
-    
+
       while (el) {
         size.width = el.offsetWidth;
         size.height = el.offsetHeight;
         if (size.width > 20 && size.height > 20) break;
         el = el.parentNode;
       }
-    
+
       return size;
     }
-    
+
     /**
      * Trigger a custom event.
      *
@@ -4541,7 +4544,7 @@ return PxsMap;
       event.initEvent(name, true, true);
       return !el.dispatchEvent(event);
     }
-    
+
     /**
      * Return the maximum supported density of the image, given the container.
      *
@@ -4551,7 +4554,7 @@ return PxsMap;
     function supportedDensity(item, size) {
       return Math.min(Math.min(Math.max(item.max.width / size.width, 1), item.density), Math.min(Math.max(item.max.height / size.height, 1), item.density)).toFixed(2);
     }
-    
+
     /**
      * Set the image URL on the element. Supports background images and `srcset`.
      *
@@ -4563,18 +4566,18 @@ return PxsMap;
       var render = item.templateRender;
       var density = isPlaceholder ? 1 : supportedDensity(item, size);
       var round = isPlaceholder ? 1 : item.round;
-    
+
       var width = roundSize(size.width * density, round);
       var height = roundSize(size.height * density, round);
       var displaySize = width > item.max.width || height > item.max.height ? { width: item.max.width, height: item.max.height } : { width: width, height: height };
-    
+
       var url = render(item.template, displaySize);
-    
+
       // On load callback
       var image = new Image();
       image.onload = onLoad;
       image.src = url;
-    
+
       // Set image
       if (item.isBackgroundImage) {
         item.el.style.backgroundImage = 'url(\'' + url + '\')';
@@ -4582,7 +4585,7 @@ return PxsMap;
         item.el.setAttribute('srcset', url + ' ' + density + 'x');
       }
     }
-    
+
     /**
      * Load the image, set loaded status, and trigger the load event.
      *
@@ -4593,7 +4596,7 @@ return PxsMap;
      */
     function loadFullImage(item, size) {
       var el = item.el;
-    
+
       setImage(item, size, false, function (event) {
         if (event.type === 'load') {
           el.setAttribute('data-rimg', 'loaded');
@@ -4601,11 +4604,11 @@ return PxsMap;
           el.setAttribute('data-rimg', 'error');
           trigger(el, 'rimg:error');
         }
-    
+
         trigger(el, 'rimg:load');
       });
     }
-    
+
     /**
      * Load in a responsive image.
      *
@@ -4625,11 +4628,11 @@ return PxsMap;
      */
     function loadImage(item) {
       var el = item.el;
-    
+
       // Already loaded?
       var status = el.getAttribute('data-rimg');
       if (status === 'loading' || status === 'loaded') return;
-    
+
       // Is the SVG loaded?
       if (!el.complete && !item.isBackgroundImage) {
         // Wait for the load event, then call load image
@@ -4637,22 +4640,22 @@ return PxsMap;
           el.removeEventListener('load', cb);
           loadImage(item);
         });
-    
+
         return;
       }
-    
+
       // Trigger loading event, and stop if cancelled
       if (trigger(el, 'rimg:loading')) return;
-    
+
       // Mark as loading
       el.setAttribute('data-rimg', 'loading');
-    
+
       // Get element size. This is used as the ideal display size.
       var size = getElementSize(item.el);
-    
+
       size.width *= item.scale;
       size.height *= item.scale;
-    
+
       if (item.placeholder) {
         // Load a placeholder image first, followed by the full image. Force the
         // element to keep its dimensions while it loads. If the image is smaller
@@ -4662,7 +4665,7 @@ return PxsMap;
           el.setAttribute('width', Math.min(Math.floor(item.max.width / item.density), size.width));
           el.setAttribute('height', Math.min(Math.floor(item.max.height / item.density), size.height));
         }
-    
+
         setImage(item, item.placeholder, true, function () {
           return loadFullImage(item, size);
         });
@@ -4670,7 +4673,7 @@ return PxsMap;
         loadFullImage(item, size);
       }
     }
-    
+
     /**
      * Prepare an element to be displayed on the screen.
      *
@@ -4685,17 +4688,17 @@ return PxsMap;
     function load(el, options) {
       if (!el) return;
       trigger(el, 'rimg:enter');
-    
+
       var item = parseItem(el, options);
       if (item.isImage) {
         if (!item.isBackgroundImage) {
           el.setAttribute('data-rimg-template-svg', el.getAttribute('srcset'));
         }
-    
+
         loadImage(item);
       }
     }
-    
+
     /**
      * Prepare an element to be displayed on the screen.
      *
@@ -4710,25 +4713,25 @@ return PxsMap;
     function update(el, options) {
       if (!el) return;
       trigger(el, 'rimg:update');
-    
+
       var item = parseItem(el, options);
-    
+
       if (item.isImage) {
         if (!item.isBackgroundImage) {
           el.setAttribute('data-rimg', 'lazy');
           el.setAttribute('srcset', el.getAttribute('data-rimg-template-svg'));
         }
-    
+
         loadImage(item);
       }
     }
-    
+
     /**
      * @typedef {Object} Size
      * @property {Number} width
      * @property {Number} height
      */
-    
+
     /**
      * A function to turn a template string into a URL.
      *
@@ -4737,7 +4740,7 @@ return PxsMap;
      * @param {Size} size
      * @returns {String}
      */
-    
+
     /**
      * @typedef {Object} Settings
      *
@@ -4760,7 +4763,7 @@ return PxsMap;
      * @property {Size} [placeholder]
      *           The size of the lo-fi image to load before the full image.
      */
-    
+
     /**
      * Initialize the responsive image handler.
      *
@@ -4774,7 +4777,7 @@ return PxsMap;
     function rimg() {
       var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '[data-rimg="lazy"]';
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    
+
       // Intersections
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -4787,7 +4790,7 @@ return PxsMap;
         // Watch the viewport, with 20% vertical margins
         rootMargin: '20% 0px'
       });
-    
+
       /**
        * @typedef {Object} PublicApi
        */
@@ -4799,7 +4802,7 @@ return PxsMap;
          */
         track: function track() {
           var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '[data-rimg="lazy"]';
-    
+
           var els = querySelector(selector);
           for (var i = 0; i < els.length; i++) {
             io.observe(els[i]);
@@ -4807,14 +4810,14 @@ return PxsMap;
         },
         update: function update$$1() {
           var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '[data-rimg="loaded"]';
-    
+
           var els = querySelector(selector);
           for (var i = 0; i < els.length; i++) {
             update(els[i], options);
           }
         },
-    
-    
+
+
         /**
          * Stop tracking element(s) for lazy-loading.
          * @type Function
@@ -4822,14 +4825,14 @@ return PxsMap;
          */
         untrack: function untrack() {
           var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '[data-rimg]';
-    
+
           var els = querySelector(selector);
           for (var i = 0; i < els.length; i++) {
             io.unobserve(els[i]);
           }
         },
-    
-    
+
+
         /**
          * Unload all event handlers and observers.
          * @type Function
@@ -4838,13 +4841,13 @@ return PxsMap;
           io.disconnect();
         }
       };
-    
+
       // Add initial elements
       api.track(selector);
-    
+
       return api;
     }
-    
+
     /**
      * Finds a group of elements on the page.
      *
@@ -4855,22 +4858,22 @@ return PxsMap;
       if (typeof selector === 'string') {
         return document.querySelectorAll(selector);
       }
-    
+
       if (selector instanceof HTMLElement) {
         return [selector];
       }
-    
+
       if (selector instanceof NodeList) {
         return selector;
       }
-    
+
       return [];
     }
-    
+
     return rimg;
-    
+
     })));
-    
+
     /*!
      * rimg-shopify v2.2.0
      * (c) 2018 Pixel Union
@@ -4880,9 +4883,9 @@ return PxsMap;
     	typeof define === 'function' && define.amd ? define(['rimg'], factory) :
     	(global.rimg = global.rimg || {}, global.rimg.shopify = factory(global.rimg));
     }(this, (function (rimg) { 'use strict';
-    
+
     rimg = rimg && rimg.hasOwnProperty('default') ? rimg['default'] : rimg;
-    
+
     /**
      * Polyfill for Element.matches().
      *
@@ -4896,43 +4899,43 @@ return PxsMap;
         return i > -1;
       };
     }
-    
+
     var state = {
       init: init,
       watch: watch,
       unwatch: unwatch
     };
-    
+
     function init() {
       var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '[data-rimg="lazy"]';
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    
+
       state.selector = selector;
       state.instance = rimg(selector, options);
       state.loadedWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    
+
       // Listen for Shopify theme editor events
       document.addEventListener('shopify:section:load', function (event) {
         return watch(event.target);
       });
-    
+
       window.addEventListener('resize', function () {
         return _update();
       });
-    
+
       document.addEventListener('shopify:section:unload', function (event) {
         return unwatch(event.target);
       });
-    
+
       // Listen for custom events to allow themes to hook into rimg
       document.addEventListener('theme:rimg:watch', function (event) {
         return watch(event.target);
       });
-    
+
       document.addEventListener('theme:rimg:unwatch', function (event) {
         return unwatch(event.target);
       });
-    
+
       // Support custom events triggered through jQuery
       // See: https://github.com/jquery/jquery/issues/3347
       if (window.jQuery) {
@@ -4946,7 +4949,7 @@ return PxsMap;
         });
       }
     }
-    
+
     /**
      * Track an element, and its children.
      *
@@ -4957,11 +4960,11 @@ return PxsMap;
       if (typeof el.matches === 'function' && el.matches(state.selector)) {
         state.instance.track(el);
       }
-    
+
       // Track element's children
       state.instance.track(el.querySelectorAll(state.selector));
     }
-    
+
     /**
      * Untrack an element, and its children
      *
@@ -4971,13 +4974,13 @@ return PxsMap;
     function unwatch(el) {
       // Untrack element's children
       state.instance.untrack(el.querySelectorAll(state.selector));
-    
+
       // Untrack element
       if (typeof el.matches === 'function' && el.matches(state.selector)) {
         state.instance.untrack(el);
       }
     }
-    
+
     /**
      * Update an element, and its children.
      *
@@ -4985,20 +4988,20 @@ return PxsMap;
      */
     function _update() {
       var currentWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    
+
       // Return if we're not 2x smaller, or larger than the existing loading size
       if (currentWidth / state.loadedWidth > 0.5 && currentWidth / state.loadedWidth < 2) {
         return;
       }
-    
+
       state.loadedWidth = currentWidth;
       state.instance.update();
     }
-    
+
     return state;
-    
+
     })));
-    
+
 ;
 
 window.ThemeView = (function(superClass) {
