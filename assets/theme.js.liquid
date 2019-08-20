@@ -1307,9 +1307,11 @@ window.ProductView = (function(superClass) {
   ProductView.prototype.addToCardOrderPage = function(itemId, itemType) {
      var currentBar = $('.cart-pip').width()
      var totalBar = $('#cart-progress-bar').width()
-     var itemWeight = 8.333
+     var itemWeight = 0
      if (itemType === "Collection") {
       itemWeight = 100
+     } else if (itemType === "Smoothie") {
+      itemWeight = 8.333
      }
     $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((currentBar/totalBar)*100+itemWeight) + "%'></div>")
     // Shopify.getCart(function(cart) {
