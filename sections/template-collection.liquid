@@ -4,6 +4,8 @@
   {% assign collection_image = collection.image %}
 {% endif %}
 
+
+
 <div
   style="{% if collection.handle contains 'build-your-order' %}display: none;{% endif %}"
   class="collection-header-wrapper {% if collection_image %}collection-header-has-image{% endif %} {% if collection.handle contains 'build-your-order' %}build-collection {% endif %}"
@@ -36,8 +38,10 @@
 
 {% if collection.handle contains 'build-your-order' %}
   <div id="cart-progress-bar">
-
   </div>
+  <script>
+    document.getElementById("cart-progress-bar").innerHTML = "<div class='cart-pip' style='width: " + ({{ cart.total_weight }}/12000)*100 + "%'></div>"
+  </script>
 {% endif %}
 
 <div style="max-width: 1290px; margin: 0 auto;">

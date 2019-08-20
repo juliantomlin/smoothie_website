@@ -1,6 +1,5 @@
 var gema = {
   theme: function(json,data,$){
-    console.log(totalCartWeight)
     var tb = '',static = '',style_quick_view='',style_variants='',hover = '',badges = '',image = data.asset_url+'no-image.svg',images_thumb='',content_images_thumb='',cl_thumb='',image_content = '',compare_at_price = '',buttons = '',paginateTop='',paginateBottom='';
     if(json.collection)
     {
