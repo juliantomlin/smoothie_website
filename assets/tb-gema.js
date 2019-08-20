@@ -60,14 +60,16 @@ var gema = {
     	if(data.quickv > 0)
       {
         buttons =
-          '<div class="tb-content-button-add-to-cart">\
-            <a class="tb-button-add-to-cart btn" href="javascript:void(0);" onclick="ProductView.prototype.test()">\
+          `<div class="tb-content-button-add-to-cart">\
+            <a class="btn" href="javascript:void(0);" onclick="ProductView.prototype.test(${value.id})">\
               Add to cart\
             </a>\
-            <a href="/products/'+value.handle+'" class="tb-button-details btn btn--secondary" href="javascript:void(0);">\
+            <a class="tb-button-add-to-cart ${value.id}" style="display:none;" href="javascript:void(0);">\
+            </a>\
+            <a href="/products/${value.handle}" class="tb-button-details btn btn--secondary" href="javascript:void(0);">\
               Details\
             </a>\
-          </div>';
+          </div>`;
       }
       if(data.swatchv == 0)
       {
