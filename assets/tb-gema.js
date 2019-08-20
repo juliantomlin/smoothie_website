@@ -1,5 +1,6 @@
 var gema = {
   theme: function(json,data,$){
+    console.log(json, data, $)
     var tb = '',static = '',style_quick_view='',style_variants='',hover = '',badges = '',image = data.asset_url+'no-image.svg',images_thumb='',content_images_thumb='',cl_thumb='',image_content = '',compare_at_price = '',buttons = '',paginateTop='',paginateBottom='';
     if(json.collection)
     {
@@ -61,7 +62,7 @@ var gema = {
       {
         buttons =
           `<div class="tb-content-button-add-to-cart">\
-            <a class="btn" href="javascript:void(0);" onclick="ProductView.prototype.test(${value.id})">\
+            <a class="btn" href="javascript:void(0);" onclick="ProductView.prototype.addToCardOrderPage(${value.id}, '${value.product_type}')">\
               Add to cart\
             </a>\
             <a class="tb-button-add-to-cart ${value.id}" style="display:none;" href="javascript:void(0);">\
@@ -109,6 +110,8 @@ var gema = {
     			<span class="tb-product-price__price tb-price-'+value.id+' product-price__sale">\
     			<span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
     		  </span>\
+          <br>\
+          <span class="number_in_cart">12</span>\
     		  <div class="tb-left-quantity"></div>\
     		</div>\
     	  </div>\
