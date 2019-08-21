@@ -1,6 +1,6 @@
 var gema = {
   theme: function(json,data,$){
-    console.log(json, data, $)
+    console.log(cartInformation)
     var tb = '',static = '',style_quick_view='',style_variants='',hover = '',badges = '',image = data.asset_url+'no-image.svg',images_thumb='',content_images_thumb='',cl_thumb='',image_content = '',compare_at_price = '',buttons = '',paginateTop='',paginateBottom='';
     if(json.collection)
     {
@@ -16,24 +16,26 @@ var gema = {
       cl_thumb = '';
       style_quick_view = '';
       style_variants = '';
+      quantity = 0;
 
-        if(value.images)
-        {
-          $.each(value.images, function( x, u ) {
-            cl_thumb = '';
-            if(x == 0)
-            {
-              cl_thumb = ' active';
-            }
-            images_thumb = images_thumb.concat('<li><a class="tb-thumb-onclick'+cl_thumb+' tb-thumb-id-'+value.id+' tb-thumb-id-'+value.id+'-'+u.id+'" href="'+gema.resizeImage(u.src,'700x700')+'" data-id="'+value.id+'" data-thumb="'+u.id+'"><img src="'+gema.resizeImage(u.src,'small')+'" /></a></li>');
-          });
-        }
-        compare_at_price = '';
-      	buttons = '';
-        image = data.asset_url+'tb-noimage.jpg'
-        image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
-        hover_image = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>'
-			if(value.featured_image != null)
+      if(value.images)
+      {
+        $.each(value.images, function( x, u ) {
+          cl_thumb = '';
+          if(x == 0)
+          {
+            cl_thumb = ' active';
+          }
+          images_thumb = images_thumb.concat('<li><a class="tb-thumb-onclick'+cl_thumb+' tb-thumb-id-'+value.id+' tb-thumb-id-'+value.id+'-'+u.id+'" href="'+gema.resizeImage(u.src,'700x700')+'" data-id="'+value.id+'" data-thumb="'+u.id+'"><img src="'+gema.resizeImage(u.src,'small')+'" /></a></li>');
+        });
+      }
+      compare_at_price = '';
+    	buttons = '';
+      image = data.asset_url+'tb-noimage.jpg'
+      image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
+      hover_image = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>'
+
+      if(value.featured_image != null)
 			{
 			  image = gema.resizeImage(value.featured_image.src,'600x600');
         image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
@@ -44,6 +46,12 @@ var gema = {
         image_hover = gema.resizeImage(value.images[1].src, '600x600');
         image_hover_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image_hover+'"></a>'
       }
+
+      cartInformation.forEach(product => {
+        if (product.product_id == value.id) {
+          quantity = product.quantity
+        }
+      })
 
       if(data.compare_price > 0)
       {
@@ -111,7 +119,7 @@ var gema = {
     			<span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
     		  </span>\
           <br>\
-          <span class="number_in_cart">12</span>\
+          <span class="number_in_cart">'+quantity+'</span>\
     		  <div class="tb-left-quantity"></div>\
     		</div>\
     	  </div>\

@@ -1,6 +1,8 @@
 <!-- TURBOFILTER CODE END -->
   {% comment %} {{ 'tb-jquery.min.js' | asset_url | script_tag }} {% endcomment %}
-
+  <script>
+    var cartInformation = {{ cart.items | json }};
+  </script>
   {{ 'tb-libs.js' | asset_url | script_tag }}
   {{ 'tb-filter-v3.js' | asset_url | script_tag }}
   {{ 'tb-gema.js' | asset_url | script_tag }}
