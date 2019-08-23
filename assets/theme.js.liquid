@@ -1315,8 +1315,7 @@ window.ProductView = (function(superClass) {
       itemWeight = 8.333
      }
     $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((currentBar/totalBar)*100+itemWeight) + "%'></div>")
-    //$(' .number_in_cart ').html()
-    console.log('quantity', quantity)
+    $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)
     // Shopify.getCart(function(cart) {
     //   return $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((cart.total_weight+1000)/12000)*100 + "%'></div>")
     // });
