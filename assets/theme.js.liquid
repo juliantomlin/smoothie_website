@@ -1307,6 +1307,7 @@ window.ProductView = (function(superClass) {
   ProductView.prototype.addToCardOrderPage = function(itemId, itemType) {
      var currentBar = $('.cart-pip').width()
      var totalBar = $('#cart-progress-bar').width()
+     var quantity = $(`.number_in_cart.${itemId}`).text()
      var itemWeight = 0
      if (itemType === "Collection") {
       itemWeight = 100
@@ -1314,10 +1315,22 @@ window.ProductView = (function(superClass) {
       itemWeight = 8.333
      }
     $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((currentBar/totalBar)*100+itemWeight) + "%'></div>")
+    //$(' .number_in_cart ').html()
+    console.log('quantity', quantity)
     // Shopify.getCart(function(cart) {
     //   return $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((cart.total_weight+1000)/12000)*100 + "%'></div>")
     // });
-    $(`.tb-button-add-to-cart.${itemId}`).trigger('click')
+
+
+    // document.querySelector(`.tb-button-add-to-cart.${itemId}`).click()
+    // document.getElementsByClassName(`tb-button-add-to-cart ${itemId}`)[0].click() // very slow!
+
+    // $(`.tb-button-add-to-cart.${itemId}`).trigger('click')
+
+
+    setTimeout(() => {
+      $(`.tb-button-add-to-cart.${itemId}`).trigger('click') // Very good!
+    }, 0)
   }
 
   ProductView.prototype.addToCart = function(e) {

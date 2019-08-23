@@ -119,13 +119,13 @@ var gema = {
     			<span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
     		  </span>\
           <br>\
-          <span class="number_in_cart">'+quantity+'</span>\
+          <div class="minus-from-cart"> </div>\
+          <span class="number_in_cart ' + value.id + '">'+quantity+'</span>\
+          <div class="plus-to-cart"> </div>\
     		  <div class="tb-left-quantity"></div>\
     		</div>\
     	  </div>\
     	</div>';
-
-
 
 			tb = tb.concat('<li class="tb-product product-'+value.id+'" data-id="'+value.id+'">\
 			<div class="tb-apolomultimedia-data-product" data-id="'+value.id+'" data-handle="'+value.handle+'"></div>\
