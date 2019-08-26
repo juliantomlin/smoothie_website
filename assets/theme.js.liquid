@@ -1307,7 +1307,7 @@ window.ProductView = (function(superClass) {
   ProductView.prototype.addToCardOrderPage = function(itemId, itemType) {
      var currentBar = $('.cart-pip').width()
      var totalBar = $('#cart-progress-bar').width()
-     var quantity = $(`.number_in_cart.${itemId}`).text()
+     var quantity = $(`.number_in_cart.${itemId}:first`).text()
      var itemWeight = 0
      if (itemType === "Collection") {
       itemWeight = 100
@@ -1316,6 +1316,8 @@ window.ProductView = (function(superClass) {
      }
     $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((currentBar/totalBar)*100+itemWeight) + "%'></div>")
     $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)
+    $(` .item-card-empty.${itemId} `).addClass('hide-card')
+    $(` .item-card-in-cart.${itemId} `).removeClass('hide-card')
     // Shopify.getCart(function(cart) {
     //   return $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((cart.total_weight+1000)/12000)*100 + "%'></div>")
     // });

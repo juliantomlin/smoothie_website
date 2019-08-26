@@ -91,6 +91,10 @@ var gema = {
         style_quick_view = ' style="display:none;"';
       }
 
+      if (quantity < 1) {
+
+      }
+
       hover =
         '<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="'+value.id+'"'+style_quick_view+'>\
     		  <div class="tb-content-image-turbofilter sca-qv-image ">\
@@ -127,9 +131,37 @@ var gema = {
     	  </div>\
     	</div>';
 
+      if (quantity < 1) {
+        in_cart_status = '<div class="item-card-empty '+ value.id +'">'+static+hover+'</div>\
+      <div class="item-card-in-cart '+ value.id + ' hide-card">'
+      } else {
+        in_cart_status = '<div class="item-card-empty '+ value.id +' hide-card">'+static+hover+'</div>\
+      <div class="item-card-in-cart '+ value.id + '">'
+      }
+
+
 			tb = tb.concat('<li class="tb-product product-'+value.id+'" data-id="'+value.id+'">\
 			<div class="tb-apolomultimedia-data-product" data-id="'+value.id+'" data-handle="'+value.handle+'"></div>\
-			'+static+hover+'\
+			'+in_cart_status+'\
+        <div class="tb-product-inner-snappy-filter tb-content-static"><div class="tb-content-static-badges">'+badges+'</div>\
+          <div class="tb-content-image-turbofilter sca-qv-image">\
+          '+image_content+'\
+          </div>\
+          <div class="tb-product-card-details">\
+          <div class="tb-grid-view-item__title">'+value.title+'</div>\
+            <div class="tb-grid-view-item__meta">\
+            '+compare_at_price+'\
+            <span class="tb-product-price__price tb-price-'+value.id+' product-price__sale">\
+            <span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
+            </span>\
+            <br>\
+            <div class="minus-from-cart"> </div>\
+            <span class="number_in_cart ' + value.id + '">'+quantity+'</span>\
+            <div class="plus-to-cart"> </div>\
+            <div class="tb-left-quantity"></div>\
+          </div>\
+          </div>\
+        </div>\
 			</li>');
 		});
  	  paginateTop = '<div class="tb-content-paginate tb-top" data-pisition="top">'+json.paginate+'</div>';
