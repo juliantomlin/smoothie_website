@@ -93,6 +93,12 @@ var gema = {
         style_quick_view = ' style="display:none;"';
       }
 
+      if (quantity < 1) {
+        hide_if_not_in_cart = 'hide-card'
+      } else {
+        hide_if_in_cart = 'hide-card'
+      }
+
       hover =
         '<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="'+value.id+'"'+style_quick_view+'>\
     		  <div class="tb-content-image-turbofilter sca-qv-image ">\
@@ -121,20 +127,10 @@ var gema = {
     			<span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
     		  </span>\
           <br>\
-          <div class="minus-from-cart"> </div>\
-          <span class="number_in_cart ' + value.id + '">'+quantity+'</span>\
-          <div class="plus-to-cart"> </div>\
     		  <div class="tb-left-quantity"></div>\
     		</div>\
     	  </div>\
     	</div>';
-
-      if (quantity < 1) {
-        hide_if_not_in_cart = 'hide-card'
-      } else {
-        hide_if_in_cart = 'hide-card'
-      }
-
 
 			tb = tb.concat('<li class="tb-product product-'+value.id+'" data-id="'+value.id+'">\
 			<div class="tb-apolomultimedia-data-product" data-id="'+value.id+'" data-handle="'+value.handle+'"></div>\
