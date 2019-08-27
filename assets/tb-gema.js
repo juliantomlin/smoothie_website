@@ -132,30 +132,30 @@ var gema = {
     	  </div>\
     	</div>';
 
-			tb = tb.concat('<li class="tb-product product-'+value.id+'" data-id="'+value.id+'">\
-			<div class="tb-apolomultimedia-data-product" data-id="'+value.id+'" data-handle="'+value.handle+'"></div>\
-			<div class="item-card-empty '+ value.id + ' ' +hide_if_in_cart+'">'+static+hover+'</div>\
-      <div class="item-card-in-cart '+ value.id + ' '+hide_if_not_in_cart+'">\
-        <div class="tb-product-inner-snappy-filter tb-content-static"><div class="tb-content-static-badges">'+badges+'</div>\
+			tb = tb.concat(`<li class="tb-product product-${value.id}" data-id="${value.id}">\
+			<div class="tb-apolomultimedia-data-product" data-id="${value.id}" data-handle="${value.handle}"></div>\
+			<div class="item-card-empty ${value.id} ${hide_if_in_cart}">${static} ${hover}</div>\
+      <div class="item-card-in-cart ${value.id} ${hide_if_not_in_cart}">\
+        <div class="tb-product-inner-snappy-filter tb-content-static-t"><div class="tb-content-static-badges">${badges}</div>\
           <div class="tb-content-image-turbofilter sca-qv-image">\
-          '+image_content+'\
+          ${image_content}\
           </div>\
           <div class="tb-product-card-details">\
-          <div class="tb-grid-view-item__title">'+value.title+'</div>\
+          <div class="tb-grid-view-item__title">${value.title}</div>\
             <div class="tb-grid-view-item__meta">\
-            '+compare_at_price+'\
-            <span class="tb-product-price__price tb-price-'+value.id+' product-price__sale">\
-            <span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
+            ${compare_at_price}\
+            <span class="tb-product-price__price tb-price-${value.id} product-price__sale">\
+            <span class="tb-product__price">${snappy.Currency.formatMoney(value.price, data['money_format'])}</span>\
             </span>\
             <br>\
             <div class="minus-from-cart"> </div>\
-            <span class="number_in_cart ' + value.id + '">'+quantity+'</span>\
-            <div class="plus-to-cart"> </div>\
+            <span class="number_in_cart ${value.id}">${quantity}</span>\
+            <div class="plus-to-cart" onclick="ProductView.prototype.addToCardOrderPage(${value.id}, '${value.product_type}')"> </div>\
             <div class="tb-left-quantity"></div>\
           </div>\
           </div>\
         </div>\
-			</li>');
+			</li>`);
 		});
  	  paginateTop = '<div class="tb-content-paginate tb-top" data-pisition="top">'+json.paginate+'</div>';
       paginateBottom = '<div class="tb-content-paginate tb-bottom" data-pisition="bottom">'+json.paginate+'</div>';
