@@ -148,10 +148,14 @@ var gema = {
             <span class="tb-product__price">${snappy.Currency.formatMoney(value.price, data['money_format'])}</span>\
             </span>\
             <br>\
-            <div class="minus-from-cart"> </div>\
-            <span class="number_in_cart ${value.id}">${quantity}</span>\
-            <div class="plus-to-cart" onclick="ProductView.prototype.addToCardOrderPage(${value.id}, '${value.product_type}')"> </div>\
-            <div class="tb-left-quantity"></div>\
+            <div>\
+              <a href="javascript:void(0);" class="minus-from-cart tb-qtyminus"> </a>\
+              <div class="number_in_cart_box">\
+              <span class="number_in_cart ${value.id}">${quantity}</span>\
+              </div>\
+              <div class="plus-to-cart" onclick="ProductView.prototype.addToCardOrderPage(${value.id}, '${value.product_type}')"> </div>\
+              <div class="tb-left-quantity"></div>\
+            </div>\
           </div>\
           </div>\
         </div>\
