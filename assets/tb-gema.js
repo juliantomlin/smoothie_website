@@ -149,7 +149,7 @@ var gema = {
             </span>\
             <br>\
             <div>\
-              <a href="javascript:void(0);" class="minus-from-cart tb-qtyminus"> </a>\
+              <div class="minus-from-cart" onclick="ProductView.prototype.removeFromCardOrderPage(${value.id}, '${value.product_type}')"> </div>\
               <div class="number_in_cart_box">\
               <span class="number_in_cart ${value.id}">${quantity}</span>\
               </div>\

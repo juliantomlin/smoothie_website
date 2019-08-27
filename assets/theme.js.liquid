@@ -1309,6 +1309,7 @@ window.ProductView = (function(superClass) {
      var totalBar = $('#cart-progress-bar').width()
      var quantity = $(`.number_in_cart.${itemId}:first`).text()
      var itemWeight = 0
+     var inCart = false
      if (itemType === "Collection") {
       itemWeight = 100
      } else if (itemType === "Smoothie") {
@@ -1318,20 +1319,42 @@ window.ProductView = (function(superClass) {
     $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)
     $(` .item-card-empty.${itemId} `).addClass('hide-card')
     $(` .item-card-in-cart.${itemId} `).removeClass('hide-card')
-    // Shopify.getCart(function(cart) {
-    //   return $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((cart.total_weight+1000)/12000)*100 + "%'></div>")
-    // });
-
-
-    // document.querySelector(`.tb-button-add-to-cart.${itemId}`).click()
-    // document.getElementsByClassName(`tb-button-add-to-cart ${itemId}`)[0].click() // very slow!
-
-    // $(`.tb-button-add-to-cart.${itemId}`).trigger('click')
-
-
+    cartInformation.forEach(function(item) {
+      if (item.product_id == itemId) {
+        inCart = true
+      }
+    })
+    if (!inCart) {
+      cartInformation.unshift({product_id: itemId})
+    }
+    console.log(cartInformation)
     setTimeout(() => {
       $(`.tb-button-add-to-cart.${itemId}`).trigger('click') // Very good!
     }, 0)
+  }
+
+  ProductView.prototype.removeFromCardOrderPage = function(itemId, itemType) {
+    console.log('test')
+    var orderNumber = null
+    var index = 0
+
+    cartInformation.forEach(function(item) {
+      if (item.product_id == itemId) {
+        console.log('found', item.product_id, itemId)
+        orderNumber = index
+        var quantity = $(`.number_in_cart.${itemId}:first`).text()
+        $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)-1}`)
+      } else {
+        index ++
+      }
+    })
+    console.log(orderNumber)
+    if (orderNumber){
+      setTimeout(() => {
+        $(`.tb-qtyminus`).eq(orderNumber).trigger('click')
+      }, 0)
+    }
+
   }
 
   ProductView.prototype.addToCart = function(e) {
