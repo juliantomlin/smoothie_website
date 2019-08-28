@@ -1335,7 +1335,7 @@ window.ProductView = (function(superClass) {
 
   ProductView.prototype.removeFromCardOrderPage = function(itemId, itemType) {
     console.log('test')
-    var orderNumber = null
+    var orderNumber = -1
     var index = 0
 
     cartInformation.forEach(function(item) {
@@ -1348,10 +1348,15 @@ window.ProductView = (function(superClass) {
         index ++
       }
     })
+    //need to update the cartInformation varable to reflect when all of a particular item is removed
     console.log(orderNumber)
-    if (orderNumber){
+    if (orderNumber > -1){
       setTimeout(() => {
-        $(`.tb-qtyminus`).eq(orderNumber).trigger('click')
+        if (index == 0){
+          $(`.tb-qtyminus`).first().trigger('click')
+        } else {
+          $(`.tb-qtyminus`).eq(orderNumber).trigger('click')
+        }
       }, 0)
     }
 
