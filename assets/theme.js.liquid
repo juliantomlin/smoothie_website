@@ -1318,8 +1318,8 @@ window.ProductView = (function(superClass) {
     $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
       +((currentBar/totalBar)*100+itemWeight) + "%'></div>")                // changes progress bar based on item weight
     $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)        // increases item count on card
-    $(` .item-card-empty.${itemId} `).addClass('hide-card')                 // changes hover over effect to be off
-    $(` .item-card-in-cart.${itemId} `).removeClass('hide-card')            // always shows the static card (non hover)
+    $(` .show_if_not_in_cart.${itemId} `).addClass('hide-card')                 // changes hover over effect to be off
+    $(` .show_if_in_cart.${itemId} `).removeClass('hide-card')            // always shows the static card (non hover)
     cartInformation.forEach(function(item) {                                // checks to see if the item is in the cart already
       if (item.product_id == itemId) {                                      // if it is in the cart, incrase the quantity within the cart object in memory
         inCart = true
@@ -1355,8 +1355,8 @@ window.ProductView = (function(superClass) {
         item.quantity --                                                    // decrease the quantity of the item in the cart object in memory
         if (item.quantity < 1){                                             // if the quantity is 0, remove the item fromt he cart object array
           cartInformation.splice(index, 1)
-          $(` .item-card-empty.${itemId} `).removeClass('hide-card')
-          $(` .item-card-in-cart.${itemId} `).addClass('hide-card')
+          $(` .show_if_not_in_cart.${itemId} `).removeClass('hide-card')
+          $(` .show_if_in_cart.${itemId} `).addClass('hide-card')
         }
         var quantity = $(`.number_in_cart.${itemId}:first`).text()
         $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
