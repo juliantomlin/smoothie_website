@@ -1308,29 +1308,30 @@ window.ProductView = (function(superClass) {
      var currentBar = $('.cart-pip').width()
      var totalBar = $('#cart-progress-bar').width()
      var quantity = $(`.number_in_cart.${itemId}:first`).text()
-     var itemWeight = 0
      var inCart = false
-     if (itemType === "Collection") {
+     var itemWeight = 0
+     if (itemType === "Collection") {                                       //assigns a weight value based on the item type
       itemWeight = 100
      } else if (itemType === "Smoothie") {
       itemWeight = 8.333
      }
-    $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: " + ((currentBar/totalBar)*100+itemWeight) + "%'></div>")
-    $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)
-    $(` .item-card-empty.${itemId} `).addClass('hide-card')
-    $(` .item-card-in-cart.${itemId} `).removeClass('hide-card')
-    cartInformation.forEach(function(item) {
-      if (item.product_id == itemId) {
+    $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
+      +((currentBar/totalBar)*100+itemWeight) + "%'></div>")                // changes progress bar based on item weight
+    $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)        // increases item count on card
+    $(` .item-card-empty.${itemId} `).addClass('hide-card')                 // changes hover over effect to be off
+    $(` .item-card-in-cart.${itemId} `).removeClass('hide-card')            // always shows the static card (non hover)
+    cartInformation.forEach(function(item) {                                // checks to see if the item is in the cart already
+      if (item.product_id == itemId) {                                      // if it is in the cart, incrase the quantity within the cart object in memory
         inCart = true
         item.quantity ++
       }
     })
     if (!inCart) {
-      cartInformation.unshift({product_id: itemId, quantity: 1})
+      cartInformation.unshift({product_id: itemId, quantity: 1})            // if the item was not in the cart, put it at the front of the array of the cart object in memory
     }
     console.log(cartInformation)
     setTimeout(() => {
-      $(`.tb-button-add-to-cart.${itemId}`).trigger('click') // Very good!
+      $(`.tb-button-add-to-cart.${itemId}`).trigger('click')                // clicks the turbo button to add the item to the cart, timeout is to process event async to improve responsiveness
     }, 0)
   }
 
@@ -1338,30 +1339,35 @@ window.ProductView = (function(superClass) {
     console.log('test')
     var orderNumber = -1
     var index = 0
+    var currentBar = $('.cart-pip').width()
+    var totalBar = $('#cart-progress-bar').width()
+    var itemWeight = 0
+    if (itemType === "Collection") {                                        //assigns a weight value based on the item type
+      itemWeight = 100
+     } else if (itemType === "Smoothie") {
+      itemWeight = 8.333
+     }
 
     cartInformation.forEach(function(item) {
-      if (item.product_id == itemId) {
+      if (item.product_id == itemId) {                                      // checks to see if the item is actually in the cart
         console.log('found', item.product_id, itemId)
-        orderNumber = index
-        item.quantity --
-        if (item.quantity < 1){
+        orderNumber = index                                                 // if found use the current index to indentify number (if not found index will be -1)
+        item.quantity --                                                    // decrease the quantity of the item in the cart object in memory
+        if (item.quantity < 1){                                             // if the quantity is 0, remove the item fromt he cart object array
           cartInformation.splice(index, 1)
         }
         var quantity = $(`.number_in_cart.${itemId}:first`).text()
+        $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
+        +((currentBar/totalBar)*100-itemWeight) + "%'></div>")
         $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)-1}`)
       } else {
         index ++
       }
     })
-    //need to update the cartInformation varable to reflect when all of a particular item is removed
     console.log(orderNumber)
-    if (orderNumber > -1){
+    if (orderNumber > -1){                                                  // if the item is in the cart, remove that item by clicking on turbo's remove button
       setTimeout(() => {
-        if (index == 0){
-          $(`.tb-qtyminus`).first().trigger('click')
-        } else {
-          $(`.tb-qtyminus`).eq(orderNumber).trigger('click')
-        }
+        $(`.tb-qtyminus`).eq(orderNumber).trigger('click')
       }, 0)
     }
 
