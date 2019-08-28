@@ -1322,10 +1322,11 @@ window.ProductView = (function(superClass) {
     cartInformation.forEach(function(item) {
       if (item.product_id == itemId) {
         inCart = true
+        item.quantity ++
       }
     })
     if (!inCart) {
-      cartInformation.unshift({product_id: itemId})
+      cartInformation.unshift({product_id: itemId, quantity: 1})
     }
     console.log(cartInformation)
     setTimeout(() => {
@@ -1342,6 +1343,10 @@ window.ProductView = (function(superClass) {
       if (item.product_id == itemId) {
         console.log('found', item.product_id, itemId)
         orderNumber = index
+        item.quantity --
+        if (item.quantity < 1){
+          cartInformation.splice(index, 1)
+        }
         var quantity = $(`.number_in_cart.${itemId}:first`).text()
         $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)-1}`)
       } else {
