@@ -1355,6 +1355,8 @@ window.ProductView = (function(superClass) {
         item.quantity --                                                    // decrease the quantity of the item in the cart object in memory
         if (item.quantity < 1){                                             // if the quantity is 0, remove the item fromt he cart object array
           cartInformation.splice(index, 1)
+          $(` .item-card-empty.${itemId} `).removeClass('hide-card')
+          $(` .item-card-in-cart.${itemId} `).addClass('hide-card')
         }
         var quantity = $(`.number_in_cart.${itemId}:first`).text()
         $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
