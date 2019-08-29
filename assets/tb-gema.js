@@ -37,14 +37,14 @@ var gema = {
     	buttons = '';
       image = data.asset_url+'tb-noimage.jpg'
       image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
-      image_hover_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>'
-      nutritional_image ='<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
 
       if(value.featured_image != null)
 			{
 			  image = gema.resizeImage(value.featured_image.src,'600x600');
         image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
       }
+      image_hover_content = image_content
+      nutritional_image = image_content
 
       if(value.images.length > 2)
       {
@@ -83,7 +83,7 @@ var gema = {
         hide_if_in_cart = 'hide-card'
       }
 
-    	if(data.quickv > 0)
+    	if (data.quickv > 0)
       {
         buttons =
           `<div class="tb-content-button-add-to-cart">\
@@ -97,13 +97,13 @@ var gema = {
             </a>\
           </div>`;
       }
-      if(data.swatchv == 0)
+      if (data.swatchv == 0)
       {
         buttons = '';
         style_variants = ' style="display:none;"';
       }
 
-      if(data.quick_view_status == 0)
+      if (data.quick_view_status == 0)
       {
         style_quick_view = ' style="display:none;"';
       }
@@ -124,11 +124,17 @@ var gema = {
             </div>\
           </div>`
 
+      nutritional_button =''
+
+      if (value.product_type === "Smoothie"){
+        nutritional_button = '<div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo('+value.id+')"></div>'
+      }
+
 
       hover =
         '<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="'+value.id+'"'+style_quick_view+'>\
     		  <div class="tb-content-image-turbofilter sca-qv-image ">\
-            <div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo('+value.id+')"></div>\
+            '+nutritional_button+'\
     				<div class="tb-content-hover-badges">'+badges+'\
             </div>\
             <div class="default_image_container '+value.id+' ">\
