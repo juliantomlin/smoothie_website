@@ -2,6 +2,7 @@
   {% comment %} {{ 'tb-jquery.min.js' | asset_url | script_tag }} {% endcomment %}
   <script>
     var cartInformation = {{ cart.items | json }};
+    //var nutritionIcon = {{ 'nutrition-hollow.svg' | file_img_url: '24x24' }}
   </script>
   {{ 'tb-libs.js' | asset_url | script_tag }}
   {{ 'tb-filter-v3.js' | asset_url | script_tag }}

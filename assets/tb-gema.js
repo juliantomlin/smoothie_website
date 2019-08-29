@@ -127,7 +127,12 @@ var gema = {
       nutritional_button =''
 
       if (value.product_type === "Smoothie"){
-        nutritional_button = '<div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo('+value.id+')"></div>'
+        //nutritional_button = '<div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo('+value.id+')"></div>'
+        nutritional_button =
+          `<div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo(${value.id})">\
+            <img class="icon_fill" src="https://cdn.shopify.com/s/files/1/1119/8356/files/nutrition-fill.svg?1653"/>\
+            <img class="icon_hollow" src="https://cdn.shopify.com/s/files/1/1119/8356/files/nutrition-hollow.svg?1643"/>\
+          </div>`
       }
 
 
