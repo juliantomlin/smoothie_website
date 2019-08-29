@@ -1375,6 +1375,12 @@ window.ProductView = (function(superClass) {
 
   }
 
+  ProductView.prototype.showNutritionalInfo = function (itemId) {
+    console.log('image should change')
+    $(`.default_image_container.${itemId}`).toggle()
+    $(`.nutritional_info_image.${itemId}`).toggle()
+  }
+
   ProductView.prototype.addToCart = function(e) {
     var quantity;
     if (this.productSettings.cartRedirect) {

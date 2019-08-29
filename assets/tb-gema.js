@@ -18,6 +18,8 @@ var gema = {
       style_variants = '';
       hide_if_not_in_cart = '';
       hide_if_in_cart = '';
+      nutrition ='';
+      nutritional_image ='';
       quantity = 0;
 
       if(value.images)
@@ -35,7 +37,8 @@ var gema = {
     	buttons = '';
       image = data.asset_url+'tb-noimage.jpg'
       image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
-      hover_image = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>'
+      image_hover_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>'
+      nutritional_image ='<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
 
       if(value.featured_image != null)
 			{
@@ -47,6 +50,12 @@ var gema = {
       {
         image_hover = gema.resizeImage(value.images[1].src, '600x600');
         image_hover_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image_hover+'"></a>'
+      }
+
+      if (value.images.length > 3)
+      {
+        nutrition = gema.resizeImage(value.images[2].src, '600x600');
+        nutritional_image = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+nutrition+'"></a>'
       }
 
       cartInformation.forEach(product => {
@@ -119,10 +128,15 @@ var gema = {
       hover =
         '<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="'+value.id+'"'+style_quick_view+'>\
     		  <div class="tb-content-image-turbofilter sca-qv-image ">\
-            <div class="nutritional_info"></div>\
+            <div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo('+value.id+')"></div>\
     				<div class="tb-content-hover-badges">'+badges+'\
             </div>\
-            '+image_hover_content+'\
+            <div class="default_image_container '+value.id+' ">\
+              '+image_hover_content+'\
+            </div>\
+            <div class="nutritional_info_image '+value.id+'" style="display:none;">\
+              '+nutritional_image+'\
+            </div>\
     		  </div>\
     		  <div class="tb-product-card-details">\
     				<div class="tb-grid-view-item__title">'+value.title+'\
@@ -138,7 +152,12 @@ var gema = {
 
       static = '<div class="tb-product-inner-snappy-filter tb-content-static"><div class="tb-content-static-badges">'+badges+'</div>\
     	  <div class="tb-content-image-turbofilter sca-qv-image">\
-    		'+image_content+'\
+        <div class="default_image_container '+value.id+' ">\
+    		  '+image_content+'\
+        </div>\
+        <div class="nutritional_info_image '+value.id+'" style="display:none;">\
+          '+nutritional_image+'\
+        </div>\
     	  </div>\
     	  <div class="tb-product-card-details">\
     		<div class="tb-grid-view-item__title">'+value.title+'</div>\
