@@ -115,11 +115,17 @@ var gema = {
               <span class="tb-product__price">${snappy.Currency.formatMoney(value.price, data['money_format'])}</span>\
               </span>\
               <br>\
-              <div class="minus-from-cart" onclick="ProductView.prototype.removeFromCardOrderPage(${value.id}, '${value.product_type}')"> </div>\
+              <div class="minus-from-cart" onclick="ProductView.prototype.removeFromCardOrderPage(${value.id}, '${value.product_type}')">
+                <img class="icon_fill" src="https://cdn.shopify.com/s/files/1/1119/8356/files/minus-fill.svg?1800"/>
+                <img class="icon_hollow" src="https://cdn.shopify.com/s/files/1/1119/8356/files/minus-hollow.svg?1800"/>
+              </div>\
               <div class="number_in_cart_box">\
               <span class="number_in_cart ${value.id}">${quantity}</span>\
               </div>\
-              <div class="plus-to-cart" onclick="ProductView.prototype.addToCardOrderPage(${value.id}, '${value.product_type}')"> </div>\
+              <div class="plus-to-cart" onclick="ProductView.prototype.addToCardOrderPage(${value.id}, '${value.product_type}')">
+                <img class="icon_fill" src="https://cdn.shopify.com/s/files/1/1119/8356/files/plus-fill.svg?1800"/>
+                <img class="icon_hollow" src="https://cdn.shopify.com/s/files/1/1119/8356/files/plus-hollow.svg?1800"/>
+              </div>\
               <div class="tb-left-quantity"></div>\
             </div>\
           </div>`
