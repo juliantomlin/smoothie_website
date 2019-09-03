@@ -1311,11 +1311,11 @@ window.ProductView = (function(superClass) {
      var inCart = false
      var itemWeight = 0
      if (itemType === "Collection") {                                       //assigns a weight value based on the item type
-      itemWeight = 100
+      itemWeight = .8*98.5
      } else if (itemType === "Smoothie") {
-      itemWeight = 8.333
+      itemWeight = (1/15)*98.5
      }
-    $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
+    $(' #cart-progress-bar ').html("<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/><div class='cart-pip' style='width: "
       +((currentBar/totalBar)*100+itemWeight) + "%'></div>")                // changes progress bar based on item weight
     $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)        // increases item count on card
     $(` .show_if_not_in_cart.${itemId} `).addClass('hide-card')                 // changes hover over effect to be off
@@ -1343,9 +1343,9 @@ window.ProductView = (function(superClass) {
     var totalBar = $('#cart-progress-bar').width()
     var itemWeight = 0
     if (itemType === "Collection") {                                        //assigns a weight value based on the item type
-      itemWeight = 100
+      itemWeight = .8*98.5
      } else if (itemType === "Smoothie") {
-      itemWeight = 8.333
+      itemWeight = (1/15)*98.5
      }
 
     cartInformation.forEach(function(item) {
@@ -1359,7 +1359,7 @@ window.ProductView = (function(superClass) {
           $(` .show_if_in_cart.${itemId} `).addClass('hide-card')
         }
         var quantity = $(`.number_in_cart.${itemId}:first`).text()
-        $(' #cart-progress-bar ').html("<div class='cart-pip' style='width: "
+        $(' #cart-progress-bar ').html("<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/><div class='cart-pip' style='width: "
         +((currentBar/totalBar)*100-itemWeight) + "%'></div>")
         $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)-1}`)
       } else {

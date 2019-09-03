@@ -9497,15 +9497,31 @@ $slideshow-gutter: 70px + $gutter;
 }
 
 #cart-progress-bar {
-  background-color: red;
-  height: 50px;
+  position: relative;
+  background-color: #CBCCCB;
+  height: 25px;
   width: 80vw;
   margin: auto;
+  margin-bottom: 30px;
+  border-radius: 25px;
+}
+
+.progress-bar-notches {
+  position: absolute;
+  display: block;
+  z-index: 100;
+  width: 79vw;
+  height: 100%;
+
 }
 
 .cart-pip {
-  background-color: green;
-  height: 50px;
+  position: absolute;
+  display: block;
+  z-index: 99;
+  background-color: #60B881;
+  height: 100%;
+  border-radius: 25px;
   float: left;
 }
 
