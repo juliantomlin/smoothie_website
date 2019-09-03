@@ -145,7 +145,7 @@
     <div id="cart-progress-bar" style="overflow: hidden;">
     </div>
     <script>
-      document.getElementById("cart-progress-bar").innerHTML = "<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/> <div class='cart-pip' style='width: " + ({{ cart.total_weight }}/15000)*98.5 + "%'></div>"
+      document.getElementById("cart-progress-bar").innerHTML = "<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/> <div class='cart-pip' style='width: " + (({{ cart.total_weight }}/15000)*98.5+1) + "%'></div>"
     </script>
   {% endif %}
 </div>
