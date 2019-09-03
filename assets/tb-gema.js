@@ -43,7 +43,7 @@ var gema = {
 			  image = gema.resizeImage(value.featured_image.src,'600x600');
         image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image+'"></a>';
       }
-      image_hover_content = image_content
+      image_hover_content = image_content                   //if the 2nd or 3rd image does not exist, default to the featured image
       nutritional_image = image_content
 
       if(value.images.length > 2)
@@ -127,7 +127,6 @@ var gema = {
       nutritional_button =''
 
       if (value.product_type === "Smoothie"){
-        //nutritional_button = '<div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo('+value.id+')"></div>'
         nutritional_button =
           `<div class="nutritional_info" onclick="ProductView.prototype.showNutritionalInfo(${value.id})">\
             <div class="nutritional ${value.id}">\

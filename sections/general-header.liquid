@@ -141,6 +141,13 @@
       {% include 'navigation', style: 'below-header' %}
     </div>
   {% endif %}
+  {% if collection.handle contains 'build-your-order' %}
+    <div id="cart-progress-bar" style="overflow: hidden;">
+    </div>
+    <script>
+      document.getElementById("cart-progress-bar").innerHTML = "<div class='cart-pip' style='width: " + ({{ cart.total_weight }}/12000)*100 + "%'></div>"
+    </script>
+  {% endif %}
 </div>
 
 {% unless password_page %}
@@ -158,6 +165,7 @@
     <div id="coin-container"></div>
   </div>
 {% endunless %}
+
 {% schema %}
 {
   "name": "Header",

@@ -5,7 +5,8 @@
 {% endif %}
 
 
-
+<div class='black-background'></div>
+<div class='lightbox'></div>
 <div
   style="{% if collection.handle contains 'build-your-order' %}display: none;{% endif %}"
   class="collection-header-wrapper {% if collection_image %}collection-header-has-image{% endif %} {% if collection.handle contains 'build-your-order' %}build-collection {% endif %}"
@@ -35,14 +36,6 @@
     {% endif %}
   </div>
 </div>
-
-{% if collection.handle contains 'build-your-order' %}
-  <div id="cart-progress-bar" style="overflow: hidden;">
-  </div>
-  <script>
-    document.getElementById("cart-progress-bar").innerHTML = "<div class='cart-pip' style='width: " + ({{ cart.total_weight }}/12000)*100 + "%'></div>"
-  </script>
-{% endif %}
 
 <div style="max-width: 1290px; margin: 0 auto;">
     {% include 'apolomultimedia-filter' %}
@@ -102,7 +95,6 @@
     {% endfor %}
   </div>
 {% endif %}
-
   {% if paginate.previous or paginate.next %}
     {% include 'pagination' %}
   {% endif %}
