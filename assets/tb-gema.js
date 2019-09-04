@@ -1,6 +1,5 @@
 var gema = {
   theme: function(json,data,$){
-    console.log(cartInformation)
     var tb = '',static = '',style_quick_view='',style_variants='',hover = '',badges = '',image = data.asset_url+'no-image.svg',images_thumb='',content_images_thumb='',cl_thumb='',image_content = '',compare_at_price = '',buttons = '',paginateTop='',paginateBottom='';
     if(json.collection)
     {
@@ -10,7 +9,6 @@ var gema = {
 	if(json.products.length > 0)
     {
 		$.each(json.products, function( index, value ) {
-      //console.log("hello", index, value)
       images_thumb = '';
       content_images_thumb = '';
       cl_thumb = '';
@@ -232,7 +230,6 @@ var gema = {
     }
   },
   updateBar:function(progress) {
-    console.log(totalCartWeight)
     $('#cart-progress-bar').html("<div class='cart-pip' style='width: " + (progress/12000)*100 + "%'></div>")
   }
 }

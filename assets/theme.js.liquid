@@ -1340,7 +1340,6 @@ window.ProductView = (function(superClass) {
   }
 
   ProductView.prototype.removeFromCardOrderPage = function(itemId, itemType) {
-    console.log('test')
     var orderNumber = -1
     var index = 0
     var currentBar = $('.cart-pip').width()
@@ -1354,7 +1353,6 @@ window.ProductView = (function(superClass) {
 
     cartInformation.forEach(function(item) {
       if (item.product_id == itemId) {                                      // checks to see if the item is actually in the cart
-        console.log('found', item.product_id, itemId)
         orderNumber = index                                                 // if found use the current index to indentify number (if not found index will be -1)
         item.quantity --                                                    // decrease the quantity of the item in the cart object in memory
         if (item.quantity < 1){                                             // if the quantity is 0, remove the item fromt he cart object array
@@ -1370,7 +1368,11 @@ window.ProductView = (function(superClass) {
         index ++
       }
     })
-    console.log(orderNumber)
+    currentBar = $('.cart-pip').width()
+    if (currentBar/totalBar < .35){
+      $('.progress-bar-cart-button').addClass('hide-card')
+      $('.minimum-progress').removeClass('hide-card')
+    }
     if (orderNumber > -1){                                                  // if the item is in the cart, remove that item by clicking on turbo's remove button
       setTimeout(() => {
         $(`.tb-qtyminus`).eq(orderNumber).trigger('click')
@@ -1380,7 +1382,6 @@ window.ProductView = (function(superClass) {
   }
 
   ProductView.prototype.showNutritionalInfo = function (itemId) {
-    console.log('image should change')
     $(`.default_image_container.${itemId}`).toggle()
     $(`.nutritional_info_image.${itemId}`).toggle()
     $(`.nutritional.${itemId}`).toggle()
