@@ -142,8 +142,19 @@
     </div>
   {% endif %}
   {% if collection.handle contains 'build-your-order' %}
+  <div id="entire-progress-bar-and-buttons">
     <div id="cart-progress-bar" style="overflow: hidden;">
     </div>
+    <div class="first-triangle progress-triangle">
+      <img src="https://cdn.shopify.com/s/files/1/1119/8356/files/triangle.svg?1814"/>
+      <p class="progress-text minimum-progress">Minimum order (6)</p>
+      <a class="progress-bar-cart-button btn hide-card" href="/cart">go to cart</a>
+    </div>
+    <div class="second-triangle progress-triangle">
+      <img src="https://cdn.shopify.com/s/files/1/1119/8356/files/triangle.svg?1814"/>
+      <p class="progress-text">Free Shipping (12)</p>
+    </div>
+  </div>
     <script>
       document.getElementById("cart-progress-bar").innerHTML = "<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/> <div class='cart-pip' style='width: " + (({{ cart.total_weight }}/15000)*98.5+1) + "%'></div>"
     </script>

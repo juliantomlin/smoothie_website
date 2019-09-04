@@ -1329,7 +1329,11 @@ window.ProductView = (function(superClass) {
     if (!inCart) {
       cartInformation.unshift({product_id: itemId, quantity: 1})            // if the item was not in the cart, put it at the front of the array of the cart object in memory
     }
-    console.log(cartInformation)
+    currentBar = $('.cart-pip').width()
+    if (currentBar/totalBar > .35){
+      $('.progress-bar-cart-button').removeClass('hide-card')
+      $('.minimum-progress').addClass('hide-card')
+    }
     setTimeout(() => {
       $(`.tb-button-add-to-cart.${itemId}`).trigger('click')                // clicks the turbo button to add the item to the cart, timeout is to process event async to improve responsiveness
     }, 0)

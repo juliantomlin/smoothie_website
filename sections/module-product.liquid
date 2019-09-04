@@ -28,7 +28,7 @@
   data-section-id="{{ section.id }}"
 >
   {%- capture product_title -%}
-    <h1 class="page-title product-title">{{ product.title }} {% if product.type == 'Smoothie' %}Smoothie{% else %}{% endif %}</h1>
+    <h1 class="page-title product-title">{{ product.title }} {% if product.type == 'Smoothie' %}Smoothie {% else %}{% endif %}</h1>
   {%- endcapture -%}
 
   {% if is_slideshow == false and single_column_product == true %}
