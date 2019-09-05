@@ -148,19 +148,19 @@
     <div class="first-triangle progress-triangle">
       <img src="https://cdn.shopify.com/s/files/1/1119/8356/files/triangle.svg?1814"/>
       <div id="first-triangle-button-switcher">
-        <p class="progress-text minimum-progress">Minimum order (6)</p>
+        <p class="progress-text minimum-progress">Minimum order</p>
         <a class="progress-bar-cart-button btn hide-card" href="/cart">go to cart</a>
       </div>
     </div>
     <div class="second-triangle progress-triangle">
       <img src="https://cdn.shopify.com/s/files/1/1119/8356/files/triangle.svg?1814"/>
-      <p class="progress-text">Free Shipping (12)</p>
+      <p class="progress-text">Free Shipping</p>
     </div>
   </div>
     <script>
       document.getElementById("cart-progress-bar").innerHTML = "<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/> <div class='cart-pip' style='width: " + (({{ cart.total_weight }}/15000)*98.5+1) + "%'></div>"
       if ({{ cart.total_weight }} >= 6000){
-        document.getElementById("first-triangle-button-switcher").innerHTML = "<p class='progress-text minimum-progress hide-card'>Minimum order (6)</p><a class='progress-bar-cart-button btn' href='/cart'>go to cart</a>"
+        document.getElementById("first-triangle-button-switcher").innerHTML = "<p class='progress-text minimum-progress hide-card'>Minimum order</p><a class='progress-bar-cart-button btn' href='/cart'>go to cart</a>"
       }
     </script>
   {% endif %}

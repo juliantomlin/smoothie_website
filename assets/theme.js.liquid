@@ -1304,6 +1304,12 @@ window.ProductView = (function(superClass) {
     }
   };
 
+  $(document).ready(function(){
+    $('.tb-filter-clear-all-cart').on('click', function(){
+        console.log('clicked!')
+    })
+  })
+
   ProductView.prototype.addToCardOrderPage = function(itemId, itemType) {
      var currentBar = $('.cart-pip').width()
      var totalBar = $('#cart-progress-bar').width()
@@ -5310,3 +5316,4 @@ $(function() {
   window.theme = new ThemeView();
   return theme.render();
 });
+
