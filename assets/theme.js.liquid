@@ -1304,9 +1304,16 @@ window.ProductView = (function(superClass) {
     }
   };
 
+
+  ProductView.prototype.showLightbox = function(itemId) {
+    $('.black-background').removeClass('hide-card')
+    $('.lightbox').removeClass('hide-card')
+  }
+
   $(document).ready(function(){
-    $('.tb-filter-clear-all-cart').on('click', function(){
-        console.log('clicked!')
+    $('.black-background').on('click', function(){
+      $('.black-background').addClass('hide-card')
+      $('.lightbox').addClass('hide-card')
     })
   })
 

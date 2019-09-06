@@ -146,7 +146,7 @@ var gema = {
 
       hover =
         '<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="'+value.id+'"'+style_quick_view+'>\
-    		  <div class="tb-content-image-turbofilter sca-qv-image ">\
+    		  <div class="tb-content-image-turbofilter sca-qv-image " onclick="ProductView.prototype.showLightbox('+value.id+')">\
             '+nutritional_button+'\
     				<div class="tb-content-hover-badges">'+badges+'\
             </div>\
