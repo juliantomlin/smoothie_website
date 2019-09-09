@@ -9,6 +9,7 @@ var gema = {
 	if(json.products.length > 0)
     {
 		$.each(json.products, function( index, value ) {
+      productInfo = productInformation[index]
       images_thumb = '';
       content_images_thumb = '';
       cl_thumb = '';
@@ -145,29 +146,29 @@ var gema = {
       }
 
       hover =
-        '<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="'+value.id+'"'+style_quick_view+'>\
-    		  <div class="tb-content-image-turbofilter sca-qv-image " onclick="ProductView.prototype.showLightbox('+value.id+')">\
-            '+nutritional_button+'\
-    				<div class="tb-content-hover-badges">'+badges+'\
+        `<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="${value.id}"${style_quick_view}>\
+    		  <div class="tb-content-image-turbofilter sca-qv-image " onclick="ProductView.prototype.showLightbox(${index})">\
+            ${nutritional_button}\
+    				<div class="tb-content-hover-badges">${badges}\
             </div>\
-            <div class="default_image_container '+value.id+' ">\
-              '+image_hover_content+'\
+            <div class="default_image_container ${value.id} ">\
+              ${image_hover_content}\
             </div>\
-            <div class="nutritional_info_image '+value.id+'" style="display:none;">\
-              '+nutritional_image+'\
+            <div class="nutritional_info_image ${value.id}" style="display:none;">\
+              ${nutritional_image}\
             </div>\
     		  </div>\
     		  <div class="tb-product-card-details">\
-    				<div class="tb-grid-view-item__title">'+value.title+'\
+    				<div class="tb-grid-view-item__title">${value.title}\
             </div>\
     		  </div>\
-    		  <div class="tb-content-swatches-cn tb-swatch-products-'+value.id+'"'+style_variants+'>\
+    		  <div class="tb-content-swatches-cn tb-swatch-products-${value.id}"${style_variants}>\
           </div>\
-          <div class="show_if_not_in_cart '+value.id+' '+hide_if_in_cart+'">\
-      		  '+buttons+'\
+          <div class="show_if_not_in_cart ${value.id} ${hide_if_in_cart}">\
+      		  ${buttons}\
           </div>\
-          '+add_and_remove_buttons+'\
-    		</div>';
+          ${add_and_remove_buttons}\
+    		</div>`;
 
       static = '<div class="tb-product-inner-snappy-filter tb-content-static"><div class="tb-content-static-badges">'+badges+'</div>\
     	  <div class="tb-content-image-turbofilter sca-qv-image">\

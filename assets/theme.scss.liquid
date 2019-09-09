@@ -9627,7 +9627,7 @@ $slideshow-gutter: 70px + $gutter;
 
 .black-background {
   position: fixed;
-  z-index: 100;
+  z-index: 500;
   left: 0px;
   top: 0px;
   background-color: black;
@@ -9638,12 +9638,15 @@ $slideshow-gutter: 70px + $gutter;
 
 .lightbox {
   position: fixed;
-  z-index: 101;
+  z-index: 501;
   left: 20%;
   top: 25%;
   background-color: white;
   height:60%;
-  width: 50%;
+  width: 60%;
+  border-style: solid;
+  border-color: #60B881;
+  border-radius: 2em;
 }
 
 div.tb-content-cart.active {
@@ -9652,4 +9655,14 @@ div.tb-content-cart.active {
 
 a.tb-cart-total-price.btn{
   display: none;
+}
+
+.light-title {
+  margin: 1%;
+}
+
+.light-description {
+  margin: 2%;
+  height: 85%;
+  overflow-y: scroll;
 }

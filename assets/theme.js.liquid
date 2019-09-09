@@ -1305,9 +1305,16 @@ window.ProductView = (function(superClass) {
   };
 
 
-  ProductView.prototype.showLightbox = function(itemId) {
+  ProductView.prototype.showLightbox = function(product) {
+    var item = productInformation[product]
+
     $('.black-background').removeClass('hide-card')
     $('.lightbox').removeClass('hide-card')
+    $('.lightbox').html(`
+      <h3 class="light-title">${item.title}</h3>
+      <div class="light-description">
+        ${item.description}
+      </div>`)
   }
 
   $(document).ready(function(){
