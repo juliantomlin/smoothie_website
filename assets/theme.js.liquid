@@ -1328,6 +1328,7 @@ window.ProductView = (function(superClass) {
      var currentBar = $('.cart-pip').width()
      var totalBar = $('#cart-progress-bar').width()
      var quantity = $(`.number_in_cart.${itemId}:first`).text()
+     var currentCart = $(`.cart-count`).text()
      var inCart = false
      var itemWeight = 0
      if (itemType === "Collection") {                                       //assigns a weight value based on the item type
@@ -1340,6 +1341,7 @@ window.ProductView = (function(superClass) {
     $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)+1}`)        // increases item count on card
     $(` .show_if_not_in_cart.${itemId} `).addClass('hide-card')                 // changes hover over effect to be off
     $(` .show_if_in_cart.${itemId} `).removeClass('hide-card')            // always shows the static card (non hover)
+    $(` .cart-count`).html(`${parseInt(currentCart)+1}`)
     cartInformation.forEach(function(item) {                                // checks to see if the item is in the cart already
       if (item.product_id == itemId) {                                      // if it is in the cart, incrase the quantity within the cart object in memory
         inCart = true
@@ -1364,6 +1366,7 @@ window.ProductView = (function(superClass) {
     var index = 0
     var currentBar = $('.cart-pip').width()
     var totalBar = $('#cart-progress-bar').width()
+    var currentCart = $(`.cart-count`).text()
     var itemWeight = 0
     if (itemType === "Collection") {                                        //assigns a weight value based on the item type
       itemWeight = .8*98.5
@@ -1384,6 +1387,7 @@ window.ProductView = (function(superClass) {
         $(' #cart-progress-bar ').html("<img class='progress-bar-notches' src='https://cdn.shopify.com/s/files/1/1119/8356/files/progress-bar-notches-cut.svg?1775'/><div class='cart-pip' style='width: "
         +((currentBar/totalBar)*100-itemWeight) + "%'></div>")
         $(` .number_in_cart.${itemId} `).html(`${parseInt(quantity)-1}`)
+        $(` .cart-count`).html(`${parseInt(currentCart)-1}`)
       } else {
         index ++
       }

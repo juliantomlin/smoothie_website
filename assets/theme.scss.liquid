@@ -9646,11 +9646,17 @@ $slideshow-gutter: 70px + $gutter;
   width: 60%;
   border-style: solid;
   border-color: #60B881;
-  border-radius: 2em;
+  border-radius: 1em;
 }
 
-div.tb-content-cart.active {
-  display: none !important;
+@media only screen and (min-width: 400px) {
+  div.tb-content-cart.active {
+    display: none !important;
+  }
+
+  div.tb-content-cart {
+    display: none !important;
+  }
 }
 
 a.tb-cart-total-price.btn{
