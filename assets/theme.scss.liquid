@@ -9559,6 +9559,27 @@ $slideshow-gutter: 70px + $gutter;
   display: none;
 }
 
+@media only screen and (max-width: 769px) {
+  .remove-all-from-cart{
+    display: none;
+  }
+}
+
+.remove-all-from-cart {
+  width: 100px;
+  position: absolute;
+  right: 88.5vw;
+  margin-top: -3px;
+  text-align: center;
+}
+
+.remove-icon {
+  transform: rotate(45deg);
+  height: 32px;
+  width: 32px;
+}
+
+
 .minus-from-cart {
   position: relative;
   display: inline-block;
@@ -9566,6 +9587,7 @@ $slideshow-gutter: 70px + $gutter;
   width: 24px;
   margin-right: 25px;
 }
+
 
 .plus-to-cart {
   position: relative;

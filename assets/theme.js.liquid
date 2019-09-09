@@ -1322,7 +1322,14 @@ window.ProductView = (function(superClass) {
       $('.black-background').addClass('hide-card')
       $('.lightbox').addClass('hide-card')
     })
+    $('.remove-all-from-cart').on('click', function(){
+      $('.tb-filter-clear-all-cart').trigger('click')
+      setTimeout(() => {
+        location.reload()
+      }, 100)
+    })
   })
+
 
   ProductView.prototype.addToCardOrderPage = function(itemId, itemType) {
      var currentBar = $('.cart-pip').width()
