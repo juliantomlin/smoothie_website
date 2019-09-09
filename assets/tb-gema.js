@@ -48,13 +48,13 @@ var gema = {
       if(value.images.length > 2)
       {
         image_hover = gema.resizeImage(value.images[1].src, '600x600');
-        image_hover_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image_hover+'"></a>'
+        image_hover_content = '<img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+image_hover+'">'
       }
 
       if (value.images.length > 3)
       {
         nutrition = gema.resizeImage(value.images[2].src, '600x600');
-        nutritional_image = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+nutrition+'"></a>'
+        nutritional_image = '<img alt="'+value.title+'" class="build-image tb-image-fisrt-'+value.id+'" src="'+nutrition+'">'
       }
 
       cartInformation.forEach(product => {
@@ -147,11 +147,11 @@ var gema = {
 
       hover =
         `<div class="tb-product-inner-snappy-filter tb-content-hover" data-id="${value.id}"${style_quick_view}>\
-    		  <div class="tb-content-image-turbofilter sca-qv-image " onclick="ProductView.prototype.showLightbox(${index})">\
+    		  <div class="tb-content-image-turbofilter sca-qv-image">\
             ${nutritional_button}\
     				<div class="tb-content-hover-badges">${badges}\
             </div>\
-            <div class="default_image_container ${value.id} ">\
+            <div class="default_image_container ${value.id} " onclick="ProductView.prototype.showLightbox(${index})">\
               ${image_hover_content}\
             </div>\
             <div class="nutritional_info_image ${value.id}" style="display:none;">\
